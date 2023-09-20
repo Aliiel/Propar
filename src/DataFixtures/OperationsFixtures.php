@@ -19,7 +19,7 @@ class OperationsFixtures extends Fixture implements DependentFixtureInterface
         $clients = $manager->getRepository(Client::class)->findAll();
         $faker = Faker\Factory::create();
 
-        $prixPossibles = [1000, 2500, 10000];
+        $prixPossibles = [1000, 2500, 5000];
 
 foreach ($clients as $client) {
   $operations = new Operation();
@@ -49,3 +49,4 @@ foreach ($clients as $client) {
     }
 
 }
+
