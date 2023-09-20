@@ -5,13 +5,23 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         users_in_memory: { memory: null }
+
+        user_provider: 
+            entity: 
+                class: App\Entity\Utilisateur
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: user_provider
+            custom_authenticator: App\Security\UserAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -23,7 +33,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
@@ -37,3 +47,4 @@ when@test:
                 cost: 4 # Lowest possible value for bcrypt
                 time_cost: 3 # Lowest possible value for argon
                 memory_cost: 10 # Lowest possible value for argon
+
