@@ -32,15 +32,12 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $selectedRoles = $form->get('roles')->getData();
+            $user->setRoles($selectedRoles);
+
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
         }
 
         return $this->render('registration/register.html.twig', [
