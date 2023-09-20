@@ -3,6 +3,9 @@
 {% block title %}Création d'un nouvel utilisateur{% endblock %}
 
 {% block body %}
+
+{% include "header/_header.html.twig" %}
+
     <h1>Création d'un nouvel utilisateur</h1>
 
     {{ form_errors(registrationForm) }}

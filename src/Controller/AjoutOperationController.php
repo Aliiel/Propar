@@ -50,10 +50,7 @@ class AjoutOperationController extends AbstractController
                $em->flush();
 
 
-            $this -> addFlash('succes', 'Operation ajouté avec succes');
-            // On redirige
-            // return $this-> redirectToRoute('index');
-            return $this->redirectToRoute('app_home');
+      
         }
 
         // return $this->renderForm('ajout_operation/index.html.twig', [
