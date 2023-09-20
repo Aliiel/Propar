@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Gerer;
 use App\Entity\Operation;
 use App\Form\OperationFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,11 +16,13 @@ class AjoutOperationController extends AbstractController
     #[Route('/ajout/operation', name: 'app_ajout_operation')]
     public function add(Request $request, EntityManagerInterface $em): Response
     {
-        // $this-> denyAccessUnlessGranted()
 
+        $user = $this->getUser(); // récupère l'utilisateur de la session 
         //On crée une "nouvelle operation"
 
         $operation = new Operation();
+
+         
 
 //créer le formulaire
         $operationForm = $this-> createForm(OperationFormType::class, $operation);
@@ -37,6 +40,16 @@ class AjoutOperationController extends AbstractController
         if($operationForm ->isSubmitted() && $operationForm->isValid()){
             $em->persist($operation);
             $em->flush();
+
+               // Créez une nouvelle instance de Gerer pour enregistrer la relation
+               $gerer = new Gerer();
+               $gerer->setOperationKey($operation);
+               $gerer->setUtilisateurKey($user);
+
+               $em->persist($gerer);
+               $em->flush();
+
+
             $this -> addFlash('succes', 'Operation ajouté avec succes');
             // On redirige
             // return $this-> redirectToRoute('index');
