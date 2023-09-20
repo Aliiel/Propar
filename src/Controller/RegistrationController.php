@@ -36,6 +36,7 @@ class RegistrationController extends AbstractController
             $user->setRoles($selectedRoles);
 
             $entityManager->persist($user);
+            $entityManager->persist($selectedRoles);
             $entityManager->flush();
             // do anything else you need here, like send an email
         }
