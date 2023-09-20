@@ -2,31 +2,43 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Client;
 use App\Entity\Operation;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 
-class OperationsFixtures extends Fixture
+class OperationsFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
         
 
+        $clients = $manager->getRepository(Client::class)->findAll();
         $faker = Faker\Factory::create();
 
-for ($i=1; $i <= 10; $i++) { 
-    $operations = new Operation();
-    $operations->setType($faker->numberBetween(1 , 3));
+        $prixPossibles = [1000, 2500, 10000];
+
+foreach ($clients as $client) {
+  $operations = new Operation();
+    $operations->setType($faker->randomElement($prixPossibles));
     $operations->setEtat($faker->numberBetween(1 , 2)); 
-    // Mettre l'etat en boolean fini ou non fini 
+
+    $dateRealisationString = $faker->date(); // Chaîne de caractères représentant la date
+    $dateRealisation = DateTime::createFromFormat('Y-m-d', $dateRealisationString); // Conversion en objet DateTime
+
+    $operations->setDateRealisation($dateRealisation);
+    
+    $operations->setClient($client); 
+
 
     $manager->persist($operations);
-
 }
-
-        $manager->flush();
-    }
+   
+  $manager->flush();
+}
 
     public function getDependencies()
     {
@@ -35,4 +47,5 @@ for ($i=1; $i <= 10; $i++) {
             ClientFixtures::class,
         );
     }
+
 }

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Accueil Propar !{% endblock %}
+
+
+
+
+{% block stylessheets %} <link rel="stylesheet" href="{{ asset('css/creationForm.css') }}"> {% endblock %}
+
+
+{% block body %}
+
+{% include "header/_header.html.twig" %}
+
+<div class="main">
+    <div class="element1">
+    <h1>Création d'une demande d'opération</h1>
+        <img src="{{asset('image/photoform.jpg')}}" alt="photo homme menage" width="50%">
+    </div>
+    {% include "ajout_operation/_form.html.twig" %}
+
+</div>
+{% endblock %}

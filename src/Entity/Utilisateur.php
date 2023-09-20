@@ -35,9 +35,19 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Client::class)]
     private Collection $clients;
 
+    #[ORM\OneToMany(mappedBy: 'utilisateur_key', targetEntity: Gerer::class)]
+    private Collection $gerers;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $prenom = null;
+
     public function __construct()
     {
         $this->clients = new ArrayCollection();
+        $this->gerers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,6 +170,60 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gerer>
+     */
+    public function getGerers(): Collection
+    {
+        return $this->gerers;
+    }
+
+    public function addGerer(Gerer $gerer): static
+    {
+        if (!$this->gerers->contains($gerer)) {
+            $this->gerers->add($gerer);
+            $gerer->setUtilisateurKey($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGerer(Gerer $gerer): static
+    {
+        if ($this->gerers->removeElement($gerer)) {
+            // set the owning side to null (unless already changed)
+            if ($gerer->getUtilisateurKey() === $this) {
+                $gerer->setUtilisateurKey(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): static
+    {
+        $this->prenom = $prenom;
 
         return $this;
     }

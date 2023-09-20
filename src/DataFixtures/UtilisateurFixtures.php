@@ -10,7 +10,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UtilisateurFixtures extends Fixture
 {
-    private $counter = 2;
+  
 
  public function __construct(
     private UserPasswordHasherInterface $passwordEncoder
@@ -23,6 +23,8 @@ class UtilisateurFixtures extends Fixture
 
         $admin = new Utilisateur();
         $admin -> setId(1);
+        $admin -> setPrenom($faker -> firstName);
+        $admin -> setNom($faker -> lastName);
         $admin -> setEmail($faker -> email);
         $admin -> setRoles(['EXPERT']);
         $admin -> setPassword(
@@ -36,31 +38,31 @@ class UtilisateurFixtures extends Fixture
         for ($i=2; $i <= 5 ; $i++) { 
             $utilisateur = new Utilisateur();
             $utilisateur -> setId($i);
+            $utilisateur -> setPrenom($faker -> firstName);
+            $utilisateur-> setNom($faker -> lastName);
           $utilisateur -> setEmail($faker -> email);
           $utilisateur -> setRoles(['SENIOR']);
            $utilisateur -> setPassword(
             $this -> passwordEncoder ->hashPassword($utilisateur , 'azerty')
         );
-  
-        $this -> counter++;
-        $manager -> persist($utilisateur);
+        $manager ->persist($utilisateur);
     }
-    //     for ($i=6; $i <= 10 ; $i++) { 
-    //         $utilisateur = new Utilisateur();
-    //         $utilisateur -> setId($i);
-    //       $utilisateur -> setEmail($faker -> email);
-    //       $utilisateur -> setRoles(['APPRENTI']);
-    //        $admin -> setPassword(
-    //         $this -> passwordEncoder ->hashPassword($admin , $faker -> text)
-    //     );
-      
-    //     $this -> addReference('id'.$this->counter, $utilisateur);
-    //     $this -> counter++; 
-        
-    //     $manager -> persist($utilisateur);
-    // }
-        $manager->flush();
+    $manager->flush();
+
+
+        for ($i=6; $i <= 10 ; $i++) { 
+            $utilisateur2 = new Utilisateur();
+            $utilisateur2 -> setId($i);
+            $utilisateur2 -> setPrenom($faker -> firstName);
+            $utilisateur2-> setNom($faker -> lastName);
+          $utilisateur2 -> setEmail($faker -> email);
+         $utilisateur2 -> setRoles(['APPRENTI']);
+           $utilisateur2 -> setPassword(
+            $this -> passwordEncoder ->hashPassword($utilisateur2 , 'azerty')
+        );
+            $manager ->persist($utilisateur2);
 } 
+$manager->flush();
 
-
+    }
 }

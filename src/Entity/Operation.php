@@ -32,9 +32,13 @@ class Operation
     #[ORM\JoinColumn(nullable: false)]
     private ?Client $client = null;
 
+    #[ORM\OneToMany(mappedBy: 'operation_key', targetEntity: Gerer::class)]
+    private Collection $gerers;
+
     public function __construct()
     {
         $this->Utilisateur = new ArrayCollection();
+        $this->gerers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -116,6 +120,36 @@ class Operation
     public function setClient(?Client $client): static
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gerer>
+     */
+    public function getGerers(): Collection
+    {
+        return $this->gerers;
+    }
+
+    public function addGerer(Gerer $gerer): static
+    {
+        if (!$this->gerers->contains($gerer)) {
+            $this->gerers->add($gerer);
+            $gerer->setOperationKey($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGerer(Gerer $gerer): static
+    {
+        if ($this->gerers->removeElement($gerer)) {
+            // set the owning side to null (unless already changed)
+            if ($gerer->getOperationKey() === $this) {
+                $gerer->setOperationKey(null);
+            }
+        }
 
         return $this;
     }

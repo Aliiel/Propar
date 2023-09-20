@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Client;
+use App\Entity\Utilisateur;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -10,15 +11,17 @@ use Faker;
 
 class ClientFixtures extends Fixture implements DependentFixtureInterface
 {
-    private $counter = 1;
+
+
+
     public function load(ObjectManager $manager): void
     {
-    
+        $utilisateurs = $manager->getRepository(Utilisateur::class)->findAll();
 
         
 $faker = Faker\Factory::create('fr_FR');
 
-for ($i=1; $i <12 ; $i++) { 
+foreach ($utilisateurs as $utilisateur) { 
     $client = new Client();
     //Trouver les relations avec symfony 
     $client -> setNom($faker -> lastName);
@@ -29,12 +32,7 @@ for ($i=1; $i <12 ; $i++) {
     $client -> setNumeroVoie($faker->numberBetween(1 , 320));
     $client -> setAdresse($faker->streetAddress);
     $client -> setEmail($faker->email);
-    $this -> addReference('id'.$this->counter, $client);
-    $this -> counter++;
-
-
-$utilisateur = $this->getReference('id'.rand(1,5));
-$client->setUtilisateur($utilisateur);
+    $client->setUtilisateur($utilisateur);
 
 
  $manager->persist($client); 

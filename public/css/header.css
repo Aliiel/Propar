@@ -1,0 +1,51 @@
+.head{
+    display: flex;
+    background-color: #F8F4D7;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.head:first-child{
+    justify-self: flex-start;
+}
+.element2_head{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.element2_head ul{
+    display: flex;
+    gap: 100px;
+    margin-right: 10%;
+    font-size: 1.5em;
+}
+
+#button_auth{
+    background-color: #426950;
+    ;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    transition: ease-in-out 0.4s;
+    color: white;
+}
+#button_auth:hover{
+    background-color: #78B262;
+    ;
+    border: 2px solid white;
+}
+
+ul li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+
+}
+a:hover{
+   border-bottom: 2px solid black;
+}
