@@ -17,8 +17,49 @@ class AjoutOperationController extends AbstractController
     public function add(Request $request, EntityManagerInterface $em): Response
     {
 
-        $user = $this->getUser(); // récupère l'utilisateur de la session 
+        $user = $this->getUser(); // récupère l'utilisateur de la session
+        $roles = $user -> getRoles(); 
+        var_dump($roles);
         //On crée une "nouvelle operation"
+
+       // Comptez le nombre d'opérations associées à l'utilisateur connecté avec état = 1
+       $userOperationCount = $em->createQuery('
+       SELECT COUNT(o.id)
+       FROM App\Entity\Operation o
+       JOIN o.gerers g
+       WHERE g.utilisateur_key = :user
+       AND o.etat = 1
+   ')
+   ->setParameter('user', $user)
+   ->getSingleScalarResult();
+
+
+   
+   // Vérifiez si l'utilisateur a déjà 3 opérations avec état = 1 enregistrées
+   $errorMessage = '';
+
+   if (in_array('EXPERT', $roles) && $userOperationCount >= 5) {
+       $errorMessage = 'Vous avez atteint votre limite de 5 opérations en cours.';
+       return $this->redirectToRoute('app_accueil');
+   } elseif (in_array('SENIOR', $roles) && $userOperationCount >= 3) {
+       $errorMessage = 'Vous avez atteint votre limite de 3 opérations en cours.';
+       return $this->redirectToRoute('app_accueil');
+   } elseif (in_array('APPRENTI', $roles) && $userOperationCount > 1) {
+       $errorMessage = 'Avec le rôle APPRENTI, vous avez atteint votre limite de 1 opération en cours.';
+       return $this->redirectToRoute('app_accueil');
+   }
+   
+   if (!empty($errorMessage)) {
+       $this->addFlash('danger', $errorMessage);
+   }
+// if ($this->isGranted('ROLE_SENIOR') && $userOperationCount >= 3) {
+//     $this->addFlash('danger', 'Vous avez déjà enregistré 3 opérations avec état = 1. Vous ne pouvez pas enregistrer plus.');
+//     var_dump($userOperationCount);
+// }
+// if ($this->isGranted('ROLE_APPRENTI') && $userOperationCount >= 1) {
+//     $this->addFlash('danger', 'Vous avez déjà enregistré 1 opération avec état = 1. Vous ne pouvez pas enregistrer plus.');
+//     var_dump($userOperationCount);
+// }
 
         $operation = new Operation();
 
@@ -48,9 +89,7 @@ class AjoutOperationController extends AbstractController
 
                $em->persist($gerer);
                $em->flush();
-
-
-      
+               $this->addFlash('success', 'Opération ajoutée avec succès');
         }
 
         // return $this->renderForm('ajout_operation/index.html.twig', [

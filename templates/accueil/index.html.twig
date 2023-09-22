@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des opérations{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Liste des opérations</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>État</th>
+                <!-- Ajoutez d'autres en-têtes de colonnes si nécessaire -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for operation in operations %}
+                <tr>
+                    <td>{{ operation.id }}</td>
+                    <td>{{ operation.type }}</td>
+                    <td>{{ operation.etat }}</td>
+                    <!-- Ajoutez d'autres données d'opération si nécessaire -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
