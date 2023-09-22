@@ -35,7 +35,7 @@ security:
         # - { path: ^/admin, roles: EXPERT}
         - {path: ^/profil, roles: ROLE_USER }
         - {path: ^/ajout/operation, roles: ROLE_USER }
-        - {path: ^/register, roles: EXPERT }
+        # - {path: ^/register, roles: EXPERT }
         
     role_hierarchy:
         APPRENTI : ROLE_USER
