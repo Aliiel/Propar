@@ -26,7 +26,7 @@ class UtilisateurFixtures extends Fixture
         $admin -> setPrenom($faker -> firstName);
         $admin -> setNom($faker -> lastName);
         $admin -> setEmail($faker -> email);
-        $admin -> setRoles(['EXPERT']);
+        $admin -> setRoles('EXPERT');
         $admin -> setPassword(
             $this -> passwordEncoder ->hashPassword($admin , 'admin')
         );
@@ -41,7 +41,7 @@ class UtilisateurFixtures extends Fixture
             $utilisateur -> setPrenom($faker -> firstName);
             $utilisateur-> setNom($faker -> lastName);
           $utilisateur -> setEmail($faker -> email);
-          $utilisateur -> setRoles(['SENIOR']);
+          $utilisateur -> setRoles('SENIOR');
            $utilisateur -> setPassword(
             $this -> passwordEncoder ->hashPassword($utilisateur , 'azerty')
         );
@@ -56,7 +56,7 @@ class UtilisateurFixtures extends Fixture
             $utilisateur2 -> setPrenom($faker -> firstName);
             $utilisateur2-> setNom($faker -> lastName);
           $utilisateur2 -> setEmail($faker -> email);
-         $utilisateur2 -> setRoles(['APPRENTI']);
+         $utilisateur2 -> setRoles('APPRENTI');
            $utilisateur2 -> setPassword(
             $this -> passwordEncoder ->hashPassword($utilisateur2 , 'azerty')
         );
