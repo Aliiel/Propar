@@ -1,6 +1,15 @@
 
 {% block stylessheets %}<link rel="stylesheet" href="{{ asset('css/creationForm.css') }}"> {% endblock %}
 <section>
+
+    {% for label, messages in app.flashes(['success', 'danger']) %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
 <div class="formulaire">
 <div class="corpsForm">
 {{form_start(operationForm)}}

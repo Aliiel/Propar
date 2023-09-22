@@ -22,7 +22,7 @@ class OperationFormType extends AbstractType
                 'Moyenne Operation' => 2500,
                 'Grosse Operation' => 10000,
             ],
-            'label' => "Sélectionnez le type d'opération : ",
+            'label' => "Sélectionner le type d'opération : ",
             'placeholder' => 'Choisissez une opération', // Optionnel : pour afficher un champ vide au début
         ])
 
@@ -32,11 +32,14 @@ class OperationFormType extends AbstractType
                     'Terminé' => 2
                     
                 ],
-                'label' => "Sélectionnez l'etat de l'opération' : ",
+                'label' => "Sélectionner l'etat de l'opération : ",
                 'placeholder' => "Choisissez l'état de l'opération", // Optionnel : pour afficher un champ vide au début
             ])
 
-            ->add('date_realisation')
+            ->add('date_realisation', null, [
+                 'label' => 'Date de réalisation : ',
+            ])
+           
             ->add('client', EntityType::class, [
             'class' => Client::class, 
             'choice_label' => 'Nom',  

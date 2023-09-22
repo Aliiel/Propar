@@ -40,10 +40,13 @@ class AjoutOperationController extends AbstractController
 
    if (in_array('EXPERT', $roles) && $userOperationCount >= 5) {
        $errorMessage = 'Vous avez atteint votre limite de 5 opérations en cours.';
+       return $this->redirectToRoute('app_accueil');
    } elseif (in_array('SENIOR', $roles) && $userOperationCount >= 3) {
        $errorMessage = 'Vous avez atteint votre limite de 3 opérations en cours.';
+       return $this->redirectToRoute('app_accueil');
    } elseif (in_array('APPRENTI', $roles) && $userOperationCount > 1) {
        $errorMessage = 'Avec le rôle APPRENTI, vous avez atteint votre limite de 1 opération en cours.';
+       return $this->redirectToRoute('app_accueil');
    }
    
    if (!empty($errorMessage)) {
