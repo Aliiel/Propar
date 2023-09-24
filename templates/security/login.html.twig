@@ -2,6 +2,8 @@
 
 {% block title %}Connexion{% endblock %}
 
+{% block stylessheets %} <link rel="stylesheet" href="{{ asset('css/ajoutUtilisateurForm.css') }}"> {% endblock %}
+
 {% block body %}
 <form method="post">
     {% if error %}
@@ -10,7 +12,7 @@
 
     {% if app.user %}
         <div class="mb-3">
-            Vous êtes connecté comme {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+            Vous êtes connecté avec l'adresse e-mail : {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
         </div>
     {% endif %}
 

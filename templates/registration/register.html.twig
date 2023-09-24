@@ -2,9 +2,13 @@
 
 {% block title %}Création d'un nouvel utilisateur{% endblock %}
 
+
+
 {% block body %}
 
 {% include "header/_header.html.twig" %}
+
+{% block stylessheets %} <link rel="stylesheet" href="{{ asset('css/ajoutUtilisateurForm.css') }}"> {% endblock %}
 
     <h1>Création d'un nouvel utilisateur</h1>
 
