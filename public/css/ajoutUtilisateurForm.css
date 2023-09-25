@@ -1,15 +1,125 @@
-*{
-    margin: 0;
-    padding: 0;
-  }
-  
-body{
-    background-color: #78B262;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+/* Styles du corps de la page */
+body {
+  background-color: #78B262;
+  font-family: Arial, sans-serif;
+}
 
-  h1{
-    background-color: white;
-    text-align: center;
-    padding: 20px;
-  }
+/* Styles de l'en-tête */
+h1 {
+  background-color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Styles de la section principale */
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Ajustez la hauteur comme nécessaire */
+}
+
+/* Styles pour le côté gauche (élément1) */
+.element1 {
+  width: 50%;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.element1 img {
+  width: 100%;
+}
+
+/* Styles pour le côté droit (formulaire) */
+section {
+  width: 50%;
+  padding: 20px;
+  background-color: #426950;
+  color: white;
+}
+
+.formulaire {
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.corpsForm {
+  background-color: #78B262;
+  padding: 10px;
+  border: 8px solid white;
+  border-radius: 15px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styles pour les champs du formulaire */
+div.select {
+  background-color: #426950;
+  border: 2px solid white;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.formulaire .div>div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+ 
+
+}
+
+/* Styles pour le formulaire */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; 
+}
+
+/* Styles pour le bouton "Enregistrer" */
+.btn {
+  background-color: #F8F4D7;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer; 
+  margin-top: 10px; /* Ajoute un espace en haut du bouton */
+}
+
+/* Styles pour le bouton "Enregistrer" au survol */
+.btn:hover {
+  box-shadow: 0px 0px 20px black;
+}
+
+/* Styles pour les messages flash */
+.flash-success,
+.flash-danger {
+  text-align: center;
+  font-size: 2em;
+  background-color: white;
+  padding: 10px;
+  margin-top: 10px; /* Ajoute un espace en haut des messages flash */
+}
+
+.flash-success {
+  color: #426950;
+  border: 4px solid #78B262;
+}
+
+.flash-danger {
+  color: #d01a1a;
+}
