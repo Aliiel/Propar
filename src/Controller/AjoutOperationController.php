@@ -20,6 +20,8 @@ class AjoutOperationController extends AbstractController
         $user = $this->getUser(); // récupère l'utilisateur de la session
         $roles = json_decode($user->getRoles()[0], true); 
         var_dump($roles);
+
+        
         //On crée une "nouvelle operation"
 
        // Comptez le nombre d'opérations associées à l'utilisateur connecté avec état = 1

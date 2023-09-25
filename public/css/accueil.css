@@ -3,6 +3,14 @@
     padding: 0;
 }
 
+body{
+    background-image: url(../image/fond\ accueil.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 button{
     background-color: #426950;
     ;
@@ -16,5 +24,46 @@ button{
 button:hover{
     background-color: #78B262;
     ;
-    border: 2px solid white;
+    
 }
+
+.card-body{
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 90%;
+}
+
+.card{
+ 
+    border: 8px solid #426950;
+    border-radius: 10px;
+    flex: 1; /* Chaque bloc prend autant d'espace que possible pour remplir la ligne */
+    /* Autres styles pour vos blocs */
+    margin: 10px; /* Ajoutez une marge entre les blocs pour l'espacement */
+     /* Calculez la largeur de chaque bloc pour qu'il y en ait quatre sur une ligne */
+  }
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h2{
+    font-size: 2rem;
+}
+
+.container{
+    margin: auto 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+h5{
+    background-color: #F8F4D7;
+    padding: 10px;
+    border-radius: 10px;
+}
+
