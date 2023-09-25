@@ -11,6 +11,14 @@
 {% block body %}
 
 {% include "header/_header.html.twig" %}
+
+{% for type, messages in app.flashes %}
+{% for message in messages %}
+    <div class="alert alert-{{ type }}">
+        {{ message }}
+    </div>
+{% endfor %}
+{% endfor %}
 <h1>Liste des opérations</h1>
 <div class="container">
 <div class="row">

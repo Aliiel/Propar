@@ -18,7 +18,7 @@ class AjoutOperationController extends AbstractController
     {
 
         $user = $this->getUser(); // récupère l'utilisateur de la session
-        $roles = $user -> getRoles(); 
+        $roles = json_decode($user->getRoles()[0], true); 
         var_dump($roles);
         //On crée une "nouvelle operation"
 
@@ -34,24 +34,51 @@ class AjoutOperationController extends AbstractController
    ->getSingleScalarResult();
 
 
+   $roles = json_decode($user->getRoles()[0], true); // Récupérez les rôles de l'utilisateur
+   $userRole = $roles[0]; // Le rôle de l'utilisateur
    
-   // Vérifiez si l'utilisateur a déjà sa limite d'opérations avec état = 1 enregistrées
    $errorMessage = '';
-
-   if (in_array('EXPERT', $roles) && $userOperationCount >= 5) {
-       $errorMessage = 'Vous avez atteint votre limite de 5 opérations en cours.';
-       return $this->redirectToRoute('app_accueil');
-   } elseif (in_array('SENIOR', $roles) && $userOperationCount >= 3) {
-       $errorMessage = 'Vous avez atteint votre limite de 3 opérations en cours.';
-       return $this->redirectToRoute('app_accueil');
-   } elseif (in_array('APPRENTI', $roles) && $userOperationCount > 1) {
-       $errorMessage = 'Avec le rôle APPRENTI, vous avez atteint votre limite de 1 opération en cours.';
-       return $this->redirectToRoute('app_accueil');
+   
+   $allowedRoles = ['EXPERT', 'SENIOR', 'APPRENTI']; // Les rôles autorisés
+   
+   if (in_array($userRole, $allowedRoles)) {
+       // Vérifiez les limites en fonction du rôle
+       $maxOperations = [
+           'EXPERT' => 5,
+           'SENIOR' => 3,
+           'APPRENTI' => 1,
+       ];
+   
+       if ($userOperationCount >= $maxOperations[$userRole]) {
+           $errorMessage = sprintf(
+               'Vous avez atteint votre limite de %d opérations en cours.',
+               $maxOperations[$userRole]
+           );
+           return $this->redirectToRoute('app_accueil');
+       }
    }
    
    if (!empty($errorMessage)) {
        $this->addFlash('danger', $errorMessage);
    }
+dump($userRole, $userOperationCount);
+   // Vérifiez si l'utilisateur a déjà sa limite d'opérations avec état = 1 enregistrées
+//    $errorMessage = '';
+
+//    if (in_array('EXPERT', $roles) && $userOperationCount >= 5) {
+//        $errorMessage = 'Vous avez atteint votre limite de 5 opérations en cours.';
+//        return $this->redirectToRoute('app_accueil');
+//    } elseif (in_array('SENIOR', $roles) && $userOperationCount >= 3) {
+//        $errorMessage = 'Vous avez atteint votre limite de 3 opérations en cours.';
+//        return $this->redirectToRoute('app_accueil');
+//    } elseif (in_array('APPRENTI', $roles) && $userOperationCount > 1) {
+//        $errorMessage = 'Avec le rôle APPRENTI, vous avez atteint votre limite de 1 opération en cours.';
+//        return $this->redirectToRoute('app_accueil');
+//    }
+   
+//    if (!empty($errorMessage)) {
+//        $this->addFlash('danger', $errorMessage);
+//    }
 
 
         $operation = new Operation();
