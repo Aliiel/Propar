@@ -2,3 +2,19 @@
     margin: 0;
     padding: 0;
 }
+
+button{
+    background-color: #426950;
+    ;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    transition: ease-in-out 0.4s;
+    color: white;
+}
+button:hover{
+    background-color: #78B262;
+    ;
+    border: 2px solid white;
+}
