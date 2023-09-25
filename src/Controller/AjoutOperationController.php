@@ -35,7 +35,7 @@ class AjoutOperationController extends AbstractController
 
 
    
-   // Vérifiez si l'utilisateur a déjà 3 opérations avec état = 1 enregistrées
+   // Vérifiez si l'utilisateur a déjà sa limite d'opérations avec état = 1 enregistrées
    $errorMessage = '';
 
    if (in_array('EXPERT', $roles) && $userOperationCount >= 5) {
@@ -52,14 +52,7 @@ class AjoutOperationController extends AbstractController
    if (!empty($errorMessage)) {
        $this->addFlash('danger', $errorMessage);
    }
-// if ($this->isGranted('ROLE_SENIOR') && $userOperationCount >= 3) {
-//     $this->addFlash('danger', 'Vous avez déjà enregistré 3 opérations avec état = 1. Vous ne pouvez pas enregistrer plus.');
-//     var_dump($userOperationCount);
-// }
-// if ($this->isGranted('ROLE_APPRENTI') && $userOperationCount >= 1) {
-//     $this->addFlash('danger', 'Vous avez déjà enregistré 1 opération avec état = 1. Vous ne pouvez pas enregistrer plus.');
-//     var_dump($userOperationCount);
-// }
+
 
         $operation = new Operation();
 
