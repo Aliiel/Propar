@@ -2,13 +2,21 @@
 
 {% block title %}Création d'un nouvel utilisateur{% endblock %}
 
+
+
 {% block body %}
 
 {% include "header/_header.html.twig" %}
 
+{% block stylessheets %} <link rel="stylesheet" href="{{ asset('css/ajoutUtilisateurForm.css') }}"> {% endblock %}
+
     <h1>Création d'un nouvel utilisateur</h1>
 
     {{ form_errors(registrationForm) }}
+
+    {% for message in app.flashes('success') %}
+    <p>{{ message }}
+    {% endfor %}
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.nom) }}
@@ -17,9 +25,11 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Mot de passe'
         }) }}
-        {# {{ form_row(form.roles) }} #}
+        {{ form_row(registrationForm.roles) }}
         {{ form_row(registrationForm.Accepter) }}
 
         <button type="submit" class="btn">Enregistrer</button>
     {{ form_end(registrationForm) }}
+
+
 {% endblock %}
