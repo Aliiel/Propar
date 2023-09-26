@@ -14,12 +14,19 @@ class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function index(EntityManagerInterface $em, ManagerRegistry $doctrine): Response
     {
+
+
         $operations = $doctrine
         ->getRepository(Operation::class)
         ->findBy(['etat' => 1]);
 
+        $operationsEnd = $doctrine
+        ->getRepository(Operation::class)
+        ->findBy(['etat' => 2]);
+
         return $this->render('accueil/index.html.twig', [
-            'operations' => $operations,
+            'operations' => $operations,'operationsEnd' => $operationsEnd,
         ]);
     }
 }
+
