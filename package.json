@@ -4,9 +4,6 @@
   }
 }
 {
-  "dependencies": {
-    "symfony": "^0.0.1"
-  },
   "devDependencies": {
     "@hotwired/stimulus": "^3.0.0",
     "@symfony/stimulus-bridge": "^3.2.0",
