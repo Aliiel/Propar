@@ -78,12 +78,14 @@ button:hover{
      /* Calculez la largeur de chaque bloc pour qu'il y en ait quatre sur une ligne */
   }
 .row{
+    margin-top: 5%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 h2{
+    margin-top: 5%;
     font-size: 2rem;
 }
 
