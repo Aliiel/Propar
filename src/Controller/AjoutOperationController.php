@@ -19,7 +19,7 @@ class AjoutOperationController extends AbstractController
 
         $user = $this->getUser(); // récupère l'utilisateur de la session
         $roles = json_decode($user->getRoles()[0], true); 
-        var_dump($roles);
+        
 
         
         //On crée une "nouvelle operation"
@@ -63,7 +63,6 @@ class AjoutOperationController extends AbstractController
    if (!empty($errorMessage)) {
        $this->addFlash('danger', $errorMessage);
    }
-dump($userRole, $userOperationCount);
    // Vérifiez si l'utilisateur a déjà sa limite d'opérations avec état = 1 enregistrées
 //    $errorMessage = '';
 
