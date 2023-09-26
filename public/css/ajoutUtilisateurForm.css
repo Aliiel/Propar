@@ -21,8 +21,12 @@ h1 {
 .main {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 80vh; /* Ajustez la hauteur comme nécessaire */
+  width: 100%;
+  border-radius: 10px;
+
 }
 
 /* Styles pour le côté gauche (élément1) */
@@ -32,10 +36,10 @@ h1 {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   background-color: white;
 }
-
+/* 
 .element1 img {
   width: 100%;
-}
+} */
 
 /* Styles pour le côté droit (formulaire) */
 section {
@@ -43,6 +47,7 @@ section {
   padding: 20px;
   background-color: #426950;
   color: white;
+  border-radius: 0px 0px 10px 10px;
 }
 
 .formulaire {
@@ -57,14 +62,14 @@ section {
   padding: 10px;
   border: 8px solid white;
   border-radius: 15px;
-  width: 80%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 /* Styles pour les champs du formulaire */
-div.select {
+div select {
   background-color: #426950;
   border: 2px solid white;
   color: white;
@@ -77,7 +82,7 @@ div.select {
   display: flex;
   flex-direction: column;
   justify-content: center;
- 
+  margin:10px;
 
 }
 
@@ -103,6 +108,13 @@ form {
 /* Styles pour le bouton "Enregistrer" au survol */
 .btn:hover {
   box-shadow: 0px 0px 20px black;
+}
+
+input {
+  background-color: #426950;
+  border:none;
+  border-radius:10px;
+  padding: 10px;
 }
 
 /* Styles pour les messages flash */

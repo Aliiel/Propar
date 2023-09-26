@@ -35,6 +35,7 @@ class RegistrationFormType extends AbstractType
                     'Senior' => 'SENIOR',
                     'Expert' => 'EXPERT'
                 ],
+                'label' => 'Sélectionnez un rôle',
                 'placeholder' => 'Rôles'
            ])
             ->add('Accepter', CheckboxType::class, [

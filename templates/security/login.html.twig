@@ -2,7 +2,7 @@
 
 {% block title %}Connexion{% endblock %}
 
-{% block stylessheets %} <link rel="stylesheet" href="{{ asset('css/ajoutUtilisateurForm.css') }}"> {% endblock %}
+{% block stylessheets %} <link rel="stylesheet" href="{{ asset('css/loginForm.css') }}"> {% endblock %}
 
 {% block body %}
 <form method="post">
@@ -16,18 +16,27 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Veuillez entrer vos identifiants</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    <div class="main">
+        <div class="element1">
+            <h1>Connexion</h1>
+        </div>
+    <section>
+        <h2>Veuillez entrer vos identifiants</h2>
+        <div class="formulaire">
+            <div class="corpsForm">    
+                <div class="div"><label for="inputEmail">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus></div>
+                <div class="div"><label for="inputPassword">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required></div>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+                <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}">
 
     <button class="btn btn-lg btn-primary" type="submit">
         Se connecter
     </button>
+    </div>
+    </div>
+    </div>
 </form>
 {% endblock %}
