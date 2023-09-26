@@ -1,53 +1,79 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {# Ajouter des routes pour naviguer avec le menu
+#} {% block title %}Interface Admin{% endblock %} {% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/interfaceAdmin.css') }}" />
+{% endblock %} {% block body %} {% include "header/_header.html.twig" %}
 
-{% block title %}Interface Admin{% endblock %}
-
-{% block stylesheets %}
-<link rel="stylesheet" href="{{asset('css/interfaceAdmin.css')}}">
-{% endblock %}
-
-
-{% block body %}
-<style>
-
-</style>
+<style></style>
 
 <div class="example-wrapper">
-
-    <h1>Expert Panel </h1>
+  <h1>Expert Panel</h1>
 
   <section>
-  
-  <div class="onglet">
-  <div>
-<img src="{{asset('image/ajouter-un-utilisateur.png')}}" alt="Logo créer un utilisateur">
-<h4>Créer un utilisateur</h4>
-  </div>
-  </div>
+    <div class="onglet">
+      <div>
+        <div class="icone_nav">
+          <img
+            src="{{ asset('image/ajouter-un-utilisateur.png') }}"
+            alt="Logo créer un utilisateur"
+          />
+        </div>
+        <h4>Créer un utilisateur</h4>
+      </div>
+    </div>
 
+    <div class="onglet">
+      <div>
+        <div class="icone_nav">
+          <img src="{{ asset('image/liste.png') }}" alt="Logo liste" />
+        </div>
+        <h4>Liste d'opérations</h4>
+      </div>
+    </div>
 
-  <div class="onglet">
-  <div>
+    <div class="onglet">
+      <div>
+        <div class="icone_nav">
+          <img
+            src="{{ asset('image/ajouter-le-fichier.png') }}"
+            alt="Logo ajout intervention"
+          />
+        </div>
+        <h4>Ajouter une intervention</h4>
+      </div>
+    </div>
 
-  </div>
-  </div>
+    <div class="onglet">
+      <div>
+        <div class="icone_nav">
+          <img src="{{ asset('image/groupe.png') }}" alt="Logo groupe" />
+        </div>
+        <h4>Gérer les utilisateurs</h4>
+      </div>
+    </div>
 
-  <div class="onglet">
-  <div>
-  
-  </div>
-  </div>
+    <div class="onglet">
+      <div>
+        <div class="icone_nav">
+          <img
+            src="{{ asset('image/verifier.png') }}"
+            alt="Logo operations terminées"
+          />
+        </div>
+        <h4>Liste d'opérations terminées</h4>
+      </div>
+    </div>
 
-  <div class="onglet">
-  <div>
-  </div>
-  </div>
-  <div class="onglet"><div></div></div>
-  <div class="onglet"><div></div></div>
-  
+    <div class="onglet">
+      <div>
+        <div class="icone_nav">
+          <img
+            src="{{ asset('image/chiffre-daffaires.png') }}"
+            alt="Logo voir CA"
+          />
+        </div>
+        <h4>Consulter le CA</h4>
+      </div>
+    </div>
   </section>
-
-
-   
 </div>
 {% endblock %}
