@@ -4,17 +4,37 @@
     box-sizing: border-box;
   }
   
+  @font-face {
+    font-family: 'Poppins Light';
+    src: url(../font/Poppins-Light.ttf);
+}
+@font-face {
+    font-family: 'Poppins Medium';
+    src: url(../font/Poppins-Medium.ttf);
+}
+@font-face {
+    font-family: 'Poppins Regular';
+    src: url(../font/Poppins-Regular.ttf);
+}
+
   /* Styles du corps de la page */
   body {
+    font-family: 'Poppins Light';
     background-color: #78B262;
     font-family: Arial, sans-serif;
   }
   
   /* Styles de l'en-tête */
   h1 {
+    font-family: 'Poppins Regular';
     background-color: white;
     text-align: center;
     padding: 20px;
+  }
+
+  h2{
+    font-family: 'Poppins Medium';
+    text-align: center;
   }
   
   /* Styles de la section principale */
@@ -43,23 +63,33 @@
     background-color: #426950;
     color: white;
     border-radius: 0px 0px 10px 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
   }
   
   .formulaire {
-    height: 100%; 
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  form {
+  .corpsForm {
     background-color: #78B262;
     padding: 10px;
     border: 8px solid white;
     border-radius: 15px;
-    width: 50%;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+.div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
   }
   
   /* Styles pour les champs du formulaire */
@@ -90,6 +120,7 @@
   
   /* Styles pour le bouton "Enregistrer" */
   .btn {
+    font-family: 'Poppins Light';
     background-color: #F8F4D7;
     border: none;
     border-radius: 10px;
@@ -97,6 +128,7 @@
     text-align: center;
     cursor: pointer; 
     margin-top: 10px; /* Ajoute un espace en haut du bouton */
+    transition: ease-in-out 0.4s;
   }
   
   /* Styles pour le bouton "Enregistrer" au survol */

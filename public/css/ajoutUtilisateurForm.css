@@ -40,6 +40,7 @@ h1 {
   height: 80vh; /* Ajustez la hauteur comme nécessaire */
   width: 100%;
   border-radius: 10px;
+  margin-top: 5%;
 
 }
 
@@ -80,6 +81,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 5%;
 }
 
 /* Styles pour les champs du formulaire */
@@ -130,20 +132,22 @@ input {
   padding: 10px;
 }
 
-/* Styles pour les messages flash */
+Styles pour les messages flash */
 .flash-success,
 .flash-danger {
   text-align: center;
-  font-size: 2em;
-  background-color: white;
   padding: 10px;
-  margin-top: 10px; /* Ajoute un espace en haut des messages flash */
+  margin-top: 10px; 
+  border:10px;
+
 }
 
+
 .flash-success {
-  color: #426950;
-  border: 4px solid #78B262;
+  text-align: center;
+  color: white;
 }
+
 
 .flash-danger {
   color: #d01a1a;

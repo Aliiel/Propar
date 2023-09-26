@@ -8,6 +8,7 @@ body{
 }
 
 h1{
+  font-family: 'Poppins Regular';
   background-color: white;
   text-align: center;
   padding: 20px;
@@ -28,11 +29,11 @@ h1{
   width: 100%;
 }
 
-
 section {
   width: 50%;
   height: 80%;
 }
+
 .formulaire {
     background-color: #426950;
     display: flex;
@@ -53,6 +54,10 @@ section {
   justify-content: center;
 
 
+}
+
+label{
+  font-family: 'Poppins Light';
 }
 
 div select{
@@ -89,6 +94,7 @@ div select{
   }
 
 button{
+  font-family: 'Poppins Medium';
   color: black;
 }
 
