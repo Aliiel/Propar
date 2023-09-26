@@ -20,12 +20,12 @@ class AccueilController extends AbstractController
         ->getRepository(Operation::class)
         ->findBy(['etat' => 1]);
 
-        $operationsEnd = $doctrine
+        $operationsEnds = $doctrine
         ->getRepository(Operation::class)
         ->findBy(['etat' => 2]);
 
         return $this->render('accueil/index.html.twig', [
-            'operations' => $operations,'operationsEnd' => $operationsEnd,
+            'operations' => $operations,'operationsEnds' => $operationsEnds,
         ]);
     }
 }

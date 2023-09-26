@@ -80,6 +80,7 @@ button:hover{
 .row{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 h2{

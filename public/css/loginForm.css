@@ -51,8 +51,7 @@
     flex-direction: column;
     align-items: center;
   }
-  
-  .corpsForm {
+  form {
     background-color: #78B262;
     padding: 10px;
     border: 8px solid white;
