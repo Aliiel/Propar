@@ -1,31 +1,60 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('css/accueil.css')}}">
+{% endblock %}
+
 {% block title %}Liste des opérations{% endblock %}
+
 
 {% block body %}
 
 {% include "header/_header.html.twig" %}
 
+{% for type, messages in app.flashes %}
+{% for message in messages %}
+    <div class="alert alert-{{ type }}">
+        {{ message }}
+    </div>
+{% endfor %}
+{% endfor %}
+<h1>Liste des opérations</h1>
 <div class="container">
-    <h1>Liste des opérations en cours</h1>
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID Operation</th>
-                <th>Prix</th>
-                <!-- Ajoutez d'autres en-têtes de colonnes si nécessaire -->
-            </tr>
-        </thead>
-        <tbody>
-            {% for operation in operations %}
-                <tr>
-                    <td>{{ operation.id }}</td>
-                    <td>{{ operation.type }}</td>
+<h2>Opérations en cours : </h2>
+<div class="row">
+
+    {% for operation in operations %}
+        <div class="col-md-4 mb-4 bg-primary">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Opération #{{ operation.id }}</h5>
+                    <p class="card-text">{{ operation.type}} €</p>
+                    <p class="card-text">{{ operation.etat }}</p>
+                    <p class="card-text">{{ operation.date_realisation|date('Y-m-d') }}</p>
+                    <button>Consulter</button>
                     <!-- Ajoutez d'autres données d'opération si nécessaire -->
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div> 
+
+<h2>Opérations terminées : </h2>
+<div class="row">
+    {% for operationsEnd in operationsEnds %}
+        <div class="col-md-4 mb-4 bg-primary">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Opération #{{ operationsEnd.id }}</h5>
+                    <p class="card-text">{{ operationsEnd.type }} €</p>
+                    <p class="card-text">{{ operationsEnd.etat }}</p>
+                    <p class="card-text">{{ operationsEnd.date_realisation|date('Y-m-d') }}</p>
+                    <button>Consulter</button>
+                    <!-- Ajoutez d'autres données d'opération si nécessaire -->
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 </div>
 {% endblock %}
