@@ -35,7 +35,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: '.*EXPERT.*' }
         # - { path: ^/profil, roles: '.*ROLE_USER.*' }
-        # - { path: ^/ajout/operation, roles: '.*ROLE_USER.*' }
+        - { path: ^/ajout/operation, roles: '.*ROLE_USER.*' }
         # - { path: ^/register, roles: '.*EXPERT.*' }
 
 

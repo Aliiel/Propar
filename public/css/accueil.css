@@ -3,12 +3,43 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: 'Poppins Light';
+    src: url(../font/Poppins-Light.ttf);
+}
+@font-face {
+    font-family: 'Poppins Medium';
+    src: url(../font/Poppins-Medium.ttf);
+}
+@font-face {
+    font-family: 'Poppins Regular';
+    src: url(../font/Poppins-Regular.ttf);
+}
+
 body{
     background-image: url(../image/fond\ accueil.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+}
+
+h1{
+    font-family: 'Poppins Medium';
+    background-color: #011C27;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    width: 20%;
+    text-align: center;
+}
+
+h2{
+    font-family: 'Poppins Light';
+    background-color: #426950;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
 }
 
 button{
