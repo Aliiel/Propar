@@ -1,25 +1,14 @@
 {% extends 'base.html.twig' %} {# Ajouter des routes pour naviguer avec le menu
-#} {% block title %}Interface Admin{% endblock %} {% block stylesheets %}
+#} {% block title %}Interface Utilisateur{% endblock %} {% block stylesheets %}
 <link rel="stylesheet" href="{{ asset('css/interfaceAdmin.css') }}" />
 {% endblock %} {% block body %} {% include "header/_header.html.twig" %}
 
 <style></style>
 
 <div class="example-wrapper">
-  <h1>Interface Administrateur</h1>
+  <h1>Interface utilisateur</h1>
 
   <section>
-    <div class="onglet">
-      <div>
-        <a href="{{path('app_register')}}"><div class="icone_nav">
-          <img
-            src="{{ asset('image/ajouter-un-utilisateur.png') }}"
-            alt="Logo créer un utilisateur"
-          />
-        </div></a>
-        <h4>Créer un utilisateur</h4>
-      </div>
-    </div>
 
     <div class="onglet">
       <div>
@@ -44,15 +33,7 @@
       </div>
     </div>
 
-    <div class="onglet">
-      <div>
-        <a href="}"><div class="icone_nav">
-          <img src="{{ asset('image/groupe.png') }}" alt="Logo groupe" />
-        </div>
-        <h4>Gérer les utilisateurs</h4>
-      </div>
-    </a>
-    </div>
+ 
 
     <div class="onglet">
       <div>
@@ -67,18 +48,6 @@
       </div>
     </div>
 
-    <div class="onglet">
-      <div>
-        <a href="{{path('app_chiffre_affaires')}}"><div class="icone_nav">
-          <img
-            src="{{ asset('image/chiffre-daffaires.png') }}"
-            alt="Logo voir CA"
-          />
-        </div>
-      </a>
-        <h4>Consulter le CA</h4>
-      </div>
-    </div>
   </section>
 </div>
 {% endblock %}

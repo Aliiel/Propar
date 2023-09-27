@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Poppins Light';
+    src: url(../font/Poppins-Light.ttf);
+}
+@font-face {
+    font-family: 'Poppins Medium';
+    src: url(../font/Poppins-Medium.ttf);
+}
+@font-face {
+    font-family: 'Poppins Regular';
+    src: url(../font/Poppins-Regular.ttf);
+}
+
+body{
+    background-image: url(../image/fond\ accueil.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    font-family: 'Poppins Medium';
+    background-color: #011C27;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    width: 20%;
+    text-align: center;
+}
+
+h2{
+    font-family: 'Poppins Light';
+    background-color: #426950;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+button{
+    background-color: #426950;
+    ;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    transition: ease-in-out 0.4s;
+    color: white;
+}
+button:hover{
+    background-color: #78B262;
+    ;
+    
+}
+
+.card-body{
+    border-radius: 10px;
+    background-color: #ffffff77;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 90%;
+     border: 8px solid #426950;
+     list-style-type: none;
+    
+}
+
+.card{
+ 
+   
+    border-radius: 10px;
+    flex: 1; /* Chaque bloc prend autant d'espace que possible pour remplir la ligne */
+    /* Autres styles pour vos blocs */
+    margin: 10px; /* Ajoutez une marge entre les blocs pour l'espacement */
+     /* Calculez la largeur de chaque bloc pour qu'il y en ait quatre sur une ligne */
+     width: 30%;
+     height: 80%;
+  }
+.row{
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h2{
+    margin-top: 5%;
+    font-size: 2rem;
+}
+
+.container{
+    margin: auto 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+h5{
+    background-color: #F8F4D7;
+    padding: 10px;
+    border-radius: 10px;
+}
+
