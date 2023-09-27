@@ -1,11 +1,6 @@
 {
   "dependencies": {
     "symfony": "^0.0.1"
-  }
-}
-{
-  "dependencies": {
-    "symfony": "^0.0.1"
   },
   "devDependencies": {
     "@hotwired/stimulus": "^3.0.0",
