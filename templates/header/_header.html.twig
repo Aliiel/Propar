@@ -1,6 +1,6 @@
 {% block stylessheets %}<link rel="stylesheet" href="{{ asset('css/header.css') }}"> {% endblock %}
 <div class="head">
-   <img src="{{asset('image/logo.png')}}" alt="logo" width='150px'> 
+   <a href="{{ path('app_accueil') }}"><img src="{{asset('image/logo.png')}}" alt="logo" width='150px'></a>
 
    <div class="element2_head">
         {% if  app.user %}

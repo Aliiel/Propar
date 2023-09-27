@@ -5,8 +5,7 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         users_in_memory: { memory: null }
-
-
+    
         user_provider: 
             entity: 
                 class: App\Entity\Utilisateur
@@ -37,6 +36,7 @@ security:
         - {path: ^/profil, roles: ROLE_USER }
         - {path: ^/ajout/operation, roles: ROLE_USER }
         # - {path: ^/register, roles: EXPERT }
+        # - {path: ^/login|register|reset-password, roles: ROLE_USER }
         
     role_hierarchy:
         APPRENTI : ROLE_USER
