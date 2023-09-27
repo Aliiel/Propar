@@ -3,11 +3,21 @@
    <img src="{{asset('image/logo.png')}}" alt="logo" width='150px'> 
 
    <div class="element2_head">
-    <ul>
-        <li><a href="">Qui sommes-nous?</a></li>
-        <li><a href="{{ path('app_login') }}"><button id='button_auth'>S'authentifier</button></a></li>
- 
-    </ul>
+        {% if  app.user %}
+        <ul>
+            <li><a href="#"><button id='button_auth'>Mon compte</button></a></li>
+        </ul>
+        <ul>
+            <li><a href="{{ path('app_logout') }}"><button id='button_auth'>Se déconnecter</button></a></li>
+        </ul>
+        {% else %}
+        <ul>
+            <li><a href="{{ path('app_login') }}"><button id='button_auth'>Se connecter</button></a></li>
+        </ul>
+        {% endif %}
+    </div>
+</div>
+   
 
     {# {% if is_granted('EXPERT') %}
     <p>L'administrateur est un expert.</p>
@@ -15,8 +25,4 @@
     <p>L'administrateur n'est pas un expert.</p>
 {% endif %} #}
 
-   </div>
-
-
-
-</div>
+   
