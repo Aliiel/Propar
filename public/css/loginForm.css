@@ -149,6 +149,8 @@
     font-family: 'Poppins Regular';
     padding-top: 10%;
     padding-bottom: 10%;
+    text-decoration: none;
+    color: black;
   }
   
   /* Styles pour les messages flash */

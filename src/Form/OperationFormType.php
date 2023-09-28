@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Client;
 use App\Entity\Operation;
+use App\Entity\Utilisateur;
 use App\Repository\ClientRepository;
+use App\Repository\UtilisateurRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -26,28 +28,30 @@ class OperationFormType extends AbstractType
             'placeholder' => 'Choisissez une opération', // Optionnel : pour afficher un champ vide au début
         ])
 
-            ->add('etat', ChoiceType::class, [
-                'choices' => [
-                    'En cours' => 1,
-                    'Terminé' => 2
-                    
-                ],
-                'label' => "Sélectionner l'etat de l'opération : ",
-                'placeholder' => "Choisissez l'état de l'opération", // Optionnel : pour afficher un champ vide au début
-            ])
+            // ->add('utilisateur', EntityType::class, [
+            //     'class' => Utilisateur::class,
+            //     'choice_label' => 'nom',
+            //     'query_builder' => function(UtilisateurRepository $utilisateurRepository)
+            //     {
+            //         return $utilisateurRepository->createQueryBuilder('u')
+            //             ->orderBy('u.nom', 'ASC');
+            //     }
+            // ])
 
             ->add('date_realisation', null, [
                  'label' => 'Date de réalisation : ',
-            ])
+            ]);
            
-            ->add('client', EntityType::class, [
-            'class' => Client::class, 
-            'choice_label' => 'Nom',  
-            'query_builder' => function(ClientRepository $clientRepository) 
-            {
-                return $clientRepository->createQueryBuilder('c')
-                    ->orderBy('c.Nom', 'ASC'); // Trie par le champ 'nom' du Client en ordre croissant (ASC).
-            }]);
+
+      
+            // ->add('client', EntityType::class, [
+            // 'class' => Client::class, 
+            // 'choice_label' => 'Nom',  
+            // 'query_builder' => function(ClientRepository $clientRepository) 
+            // {
+            //     return $clientRepository->createQueryBuilder('c')
+            //         ->orderBy('c.Nom', 'ASC'); // Trie par le champ 'nom' du Client en ordre croissant (ASC).
+            // }]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
