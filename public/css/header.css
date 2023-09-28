@@ -73,6 +73,7 @@ nav{
     margin: 0 auto;
     position: sticky;
     top: 0px;
+}
 
 
 nav ul{
@@ -119,7 +120,7 @@ nav > ul li:hover .sous{
     float: none;
     /* width: 100%; */
     /* text-align: left; */
- */
+
 
 
 .sous a{
