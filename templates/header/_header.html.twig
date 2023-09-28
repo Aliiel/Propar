@@ -8,23 +8,26 @@
         {% if  app.user %}
         <nav>
         <ul>
-            <li class="deroulant"><img src="{{asset('image/utilisateur.png')}}" width='50px'>
+            <img src="{{asset('image/utilisateur.png')}}" width='50px'>
+            <li class="dropdown">
                 <ul class="sous">
-                    <li><a href="#"><button id='button_auth'>Mon compte</button></a></li>
-                    <li><a href="{{ path('app_logout') }}"><button id='button_auth'>Se déconnecter</button></a></li>
+                    <li><a href="#"><button class='button_auth'>Mes informations</button></a></li>
+                    <li><a href="#"><button class='button_auth'>Mes opérations</button></a></li>
+                    <li><a href="{{ path('app_logout') }}"><button class='button_auth'>Se déconnecter</button></a></li>
                 </ul>            
+            </li>
         </ul>
-        </li>
         </nav>
         {% else %}
         <nav>
         <ul>
-            <li><a href="{{ path('app_login') }}"><button id='button_auth'>Se connecter</button></a></li>
+            <li><a href="{{ path('app_login') }}"><button class='button_auth'>Se connecter</button></a></li>
         </ul>
         </nav>
         {% endif %}
     </div>
 </div>
+
    
 
     {# {% if is_granted('EXPERT') %}

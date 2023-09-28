@@ -34,8 +34,27 @@
     border: 2px solid white;
 }
 
+.dropdown {
+    position: relative;
+}
+
+.dropdown:hover .sous {
+    display: block;
+    position: absolute; 
+    top: 100%;
+    left: 0;
+    border-top: none;
+    z-index: 1000;
+    width: 200px; 
+    padding: 10px;
+}
+
+.dropdown:hover .button_auth {
+    background-color: #426950;
+}
+
 nav{
-    width: 100%;
+    /* width: 100%; */
     margin: 0 auto;
     position: sticky;
     top: 0px;
@@ -67,10 +86,10 @@ nav a{
 }
 
 .sous{
-    display: none;
+    /* display: none; */
     /* box-shadow: 0px 1px 2px #CCC; */
     /* background-color: white; */
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
     z-index: 1000;
 }
@@ -81,11 +100,11 @@ nav > ul li:hover .sous{
 }
 
 
-.sous li{
+/* .sous li{
     float: none;
-    width: 100%;
+    /* width: 100%; */
     /* text-align: left; */
-}
+ */
 
 
 .sous a{
@@ -98,24 +117,3 @@ nav > ul li:hover .sous{
     border-bottom: none;
 }
 
-
-
-
-/* .deroulant > a::after{
-    content:" ▼";
-    font-size: 12px;
-} */
-
-
-/* ul li{
-    list-style: none;
-}
-
-a{
-    text-decoration: none;
-    color: black;
-
-}
-a:hover{
-   border-bottom: 2px solid black;
-} */
