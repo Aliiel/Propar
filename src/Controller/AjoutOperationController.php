@@ -19,8 +19,10 @@ class AjoutOperationController extends AbstractController
     {
 
         $user = $this->getUser(); // récupère l'utilisateur de la session
-        $roles = $user -> getRoles(); 
+        $roles = $user->getRoles(); 
+        
         var_dump($roles);
+        
         //On crée une "nouvelle operation"
 
        // Comptez le nombre d'opérations associées à l'utilisateur connecté avec état = 1
@@ -35,32 +37,35 @@ class AjoutOperationController extends AbstractController
    ->getSingleScalarResult();
 
 
-   
-   // Vérifiez si l'utilisateur a déjà 3 opérations avec état = 1 enregistrées
-   $errorMessage = '';
 
-//    if (in_array('EXPERT', $roles) && $userOperationCount >= 5) {
-//        $errorMessage = 'Vous avez atteint votre limite de 5 opérations en cours.';
-//        return $this->redirectToRoute('app_accueil');
-//    } elseif (in_array('SENIOR', $roles) && $userOperationCount >= 3) {
-//        $errorMessage = 'Vous avez atteint votre limite de 3 opérations en cours.';
-//        return $this->redirectToRoute('app_accueil');
-//    } elseif (in_array('APPRENTI', $roles) && $userOperationCount > 1) {
-//        $errorMessage = 'Avec le rôle APPRENTI, vous avez atteint votre limite de 1 opération en cours.';
-//        return $this->redirectToRoute('app_accueil');
-//    }
+   $userRole = $roles[0]; // Le rôle de l'utilisateur
+   
+   $errorMessage = '';
+   
+   $allowedRoles = ['EXPERT', 'SENIOR', 'APPRENTI']; // Les rôles autorisés
+   
+   if (in_array($userRole, $allowedRoles)) {
+       // Vérifiez les limites en fonction du rôle
+       $maxOperations = [
+           'EXPERT' => 5,
+           'SENIOR' => 3,
+           'APPRENTI' => 1,
+       ];
+   
+       if ($userOperationCount >= $maxOperations[$userRole]) {
+           $errorMessage = sprintf(
+               'Vous avez atteint votre limite de %d opérations en cours.',
+               $maxOperations[$userRole]
+           );
+           return $this->redirectToRoute('app_accueil');
+       }
+   }
    
    if (!empty($errorMessage)) {
        $this->addFlash('danger', $errorMessage);
    }
-// if ($this->isGranted('ROLE_SENIOR') && $userOperationCount >= 3) {
-//     $this->addFlash('danger', 'Vous avez déjà enregistré 3 opérations avec état = 1. Vous ne pouvez pas enregistrer plus.');
-//     var_dump($userOperationCount);
-// }
-// if ($this->isGranted('ROLE_APPRENTI') && $userOperationCount >= 1) {
-//     $this->addFlash('danger', 'Vous avez déjà enregistré 1 opération avec état = 1. Vous ne pouvez pas enregistrer plus.');
-//     var_dump($userOperationCount);
-// }
+
+
 
         $operation = new Operation();
 
@@ -93,17 +98,11 @@ class AjoutOperationController extends AbstractController
                $this->addFlash('success', 'Opération ajoutée avec succès');
         }
 
-        // return $this->renderForm('ajout_operation/index.html.twig', [
-        //     'operationForm' => $operationForm -> createView()
-        // ]);
 
-        // return $this->renderForm('ajout_operation/index.html.twig', 
-        //     compact('operationForm'));
 
            return $this->render('ajout_operation/index.html.twig', [
         'operationForm' => $operationForm->createView()]);
     }
- //['operationForm' => $operationForm] = compact()
    
 
 }
