@@ -18,9 +18,9 @@ class AjoutOperationController extends AbstractController
     {
 
         $user = $this->getUser(); // récupère l'utilisateur de la session
-        $roles = json_decode($user->getRoles()[0], true); 
+        $roles = $user->getRoles(); 
         
-
+        var_dump($roles);
         
         //On crée une "nouvelle operation"
 
@@ -36,7 +36,7 @@ class AjoutOperationController extends AbstractController
    ->getSingleScalarResult();
 
 
-   $roles = json_decode($user->getRoles()[0], true); // Récupérez les rôles de l'utilisateur
+
    $userRole = $roles[0]; // Le rôle de l'utilisateur
    
    $errorMessage = '';
@@ -63,23 +63,7 @@ class AjoutOperationController extends AbstractController
    if (!empty($errorMessage)) {
        $this->addFlash('danger', $errorMessage);
    }
-   // Vérifiez si l'utilisateur a déjà sa limite d'opérations avec état = 1 enregistrées
-//    $errorMessage = '';
 
-//    if (in_array('EXPERT', $roles) && $userOperationCount >= 5) {
-//        $errorMessage = 'Vous avez atteint votre limite de 5 opérations en cours.';
-//        return $this->redirectToRoute('app_accueil');
-//    } elseif (in_array('SENIOR', $roles) && $userOperationCount >= 3) {
-//        $errorMessage = 'Vous avez atteint votre limite de 3 opérations en cours.';
-//        return $this->redirectToRoute('app_accueil');
-//    } elseif (in_array('APPRENTI', $roles) && $userOperationCount > 1) {
-//        $errorMessage = 'Avec le rôle APPRENTI, vous avez atteint votre limite de 1 opération en cours.';
-//        return $this->redirectToRoute('app_accueil');
-//    }
-   
-//    if (!empty($errorMessage)) {
-//        $this->addFlash('danger', $errorMessage);
-//    }
 
 
         $operation = new Operation();
@@ -113,17 +97,11 @@ class AjoutOperationController extends AbstractController
                $this->addFlash('success', 'Opération ajoutée avec succès');
         }
 
-        // return $this->renderForm('ajout_operation/index.html.twig', [
-        //     'operationForm' => $operationForm -> createView()
-        // ]);
 
-        // return $this->renderForm('ajout_operation/index.html.twig', 
-        //     compact('operationForm'));
 
            return $this->render('ajout_operation/index.html.twig', [
         'operationForm' => $operationForm->createView()]);
     }
- //['operationForm' => $operationForm] = compact()
    
 
 }

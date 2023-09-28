@@ -1,7 +1,13 @@
 {% extends 'base.html.twig' %} {# Ajouter des routes pour naviguer avec le menu
-#} {% block title %}Interface Admin{% endblock %} {% block stylesheets %}
+#} {% block title %}Interface Admin{% endblock %} 
+
+{% block stylesheets %}
 <link rel="stylesheet" href="{{ asset('css/interfaceAdmin.css') }}" />
-{% endblock %} {% block body %} {% include "header/_header.html.twig" %}
+{% endblock %} 
+
+{% block body %} 
+
+{% include "header/_header.html.twig" %}
 
 <style></style>
 
@@ -46,7 +52,7 @@
 
     <div class="onglet">
       <div>
-        <a href="}"><div class="icone_nav">
+        <a href="{{path('app_liste_utilisateur')}}"><div class="icone_nav">
           <img src="{{ asset('image/groupe.png') }}" alt="Logo groupe" />
         </div>
         <h4>Gérer les utilisateurs</h4>
@@ -81,4 +87,5 @@
     </div>
   </section>
 </div>
+
 {% endblock %}

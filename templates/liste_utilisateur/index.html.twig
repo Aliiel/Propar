@@ -7,7 +7,7 @@
 {% include "header/_header.html.twig" %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{asset('css/listeOperations.css')}}">
+<link rel="stylesheet" href="{{asset('css/listeUtilisateurs.css')}}">
 {% endblock %}
 <style>
 
@@ -27,7 +27,7 @@
                     <li>{{ role }}</li>
                     {% endfor %} 
                 </p>
-                <a href=""><button>Consulter</button></a>
+                <a href="{{ path('app_details_utilisateur', {'id': utilisateur.id}) }}"><button>Consulter</button></a>
                 <!-- Ajoutez d'autres données d'opération si nécessaire -->
             </div>
         </div>

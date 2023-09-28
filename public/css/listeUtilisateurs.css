@@ -114,3 +114,6 @@ h5{
     border-radius: 10px;
 }
 
+a:hover{
+    border: none;
+}

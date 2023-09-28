@@ -65,12 +65,13 @@ button:hover{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 90%;
+    height: 90%;   
+    border: 8px solid #426950;
 }
 
 .card{
  
-    border: 8px solid #426950;
+ 
     border-radius: 10px;
     flex: 1; /* Chaque bloc prend autant d'espace que possible pour remplir la ligne */
     /* Autres styles pour vos blocs */
