@@ -40,18 +40,17 @@ class OperationFormType extends AbstractType
 
             ->add('date_realisation', null, [
                  'label' => 'Date de réalisation : ',
-            ]);
+            ])
            
-
-      
-            // ->add('client', EntityType::class, [
-            // 'class' => Client::class, 
-            // 'choice_label' => 'Nom',  
-            // 'query_builder' => function(ClientRepository $clientRepository) 
-            // {
-            //     return $clientRepository->createQueryBuilder('c')
-            //         ->orderBy('c.Nom', 'ASC'); // Trie par le champ 'nom' du Client en ordre croissant (ASC).
-            // }]);
+            
+            ->add('client', EntityType::class, [
+            'class' => Client::class, 
+            'choice_label' => 'Nom',  
+            'query_builder' => function(ClientRepository $clientRepository) 
+            {
+                return $clientRepository->createQueryBuilder('c')
+                    ->orderBy('c.Nom', 'ASC'); // Trie par le champ 'nom' du Client en ordre croissant (ASC).
+            }]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
