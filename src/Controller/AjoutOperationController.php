@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Gerer;
 use App\Entity\Operation;
+use App\Entity\Utilisateur;
 use App\Form\OperationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -105,3 +106,37 @@ class AjoutOperationController extends AbstractController
    
 
 }
+
+
+// if ($operationForm->isSubmitted() && $operationForm->isValid()) {
+//     // Récupérez l'utilisateur existant depuis la base de données en utilisant son ID
+//     $entityManager = $this->getDoctrine()->getManager();
+//     $utilisateurRepository = $entityManager->getRepository(Utilisateur::class);
+//     $utilisateur = $utilisateurRepository->find($userId);
+
+//     if (!$utilisateur) {
+//         // Traitez le cas où l'utilisateur n'existe pas (par exemple, affichez un message d'erreur)
+//         // Vous pouvez également rediriger l'utilisateur ou prendre d'autres mesures en conséquence
+//     } else {
+//         // Vérifiez s'il existe déjà une instance de Gerer pour cette opération
+//         $gererRepository = $entityManager->getRepository(Gerer::class);
+//         $gerer = $gererRepository->findOneBy([
+//             'operationKey' => $operation,
+//             'utilisateurKey' => $utilisateur,
+//         ]);
+
+//         if (!$gerer) {
+//             // S'il n'existe pas de relation Gerer, créez-en une nouvelle
+//             $gerer = new Gerer();
+//             $gerer->setOperationKey($operation);
+//             $gerer->setUtilisateurKey($utilisateur);
+//             $entityManager->persist($gerer);
+//         }
+
+//         // Continuez avec la persistance de l'opération
+//         $entityManager->persist($operation);
+//         $entityManager->flush();
+
+//         // Reste du code pour traiter le formulaire et persister l'opération, si nécessaire
+//     }
+// }
