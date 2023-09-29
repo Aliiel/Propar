@@ -13,7 +13,6 @@
   <div class="main">
     <div class="element1">
       <h1>Création d'un nouveau client</h1>
-        {# <img src="{{asset('image\nouvelutilisateur.jpg')}}"> #}
     </div>
 
     <section>
@@ -23,14 +22,14 @@
       {{ form_start(form) }}
       {{ form_errors(form) }}
 
-      <div class="div">{{ form_row(form.Nom, {'attr': {'class': 'select'}}) }}</div>
-      <div class="div"> {{ form_row(form.prenom, {'attr': {'class': 'select'}}) }}</div>
-      <div class="div">{{ form_row(form.numero_voie, {'attr': {'class': 'select'}}) }}</div>
-      <div class="div">{{ form_row(form.adresse, {'attr': {'class': 'select'}}) }}</div>
-      <div class="div"> {{ form_row(form.code_postal, {'attr': {'class': 'select'}}) }}</div>
-      <div class="div">{{ form_row(form.ville, {'attr': {'class': 'select'}}) }}</div>
-      <div class="div">{{ form_row(form.pays, {'attr': {'class': 'select'}}) }}</div>
-      <div class="div">{{ form_row(form.email, {'attr': {'class': 'select'}}) }}</div>
+      <div class="div">{{ form_row(form.Nom) }}</div>
+      <div class="div"> {{ form_row(form.prenom) }}</div>
+      <div class="div">{{ form_row(form.numero_voie) }}</div>
+      <div class="div">{{ form_row(form.adresse) }}</div>
+      <div class="div"> {{ form_row(form.code_postal) }}</div>
+      <div class="div">{{ form_row(form.ville) }}</div>
+      <div class="div">{{ form_row(form.pays) }}</div>
+      <div class="div">{{ form_row(form.email) }}</div>
 
      <div class="btn_submit">
         <button type="submit" class="btn">Créer</button>
