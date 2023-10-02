@@ -1,33 +1,36 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
 
-{% block title %}Profil de l'utilisateur{% endblock %}
+{% block title %}Modifier un utilisateur{% endblock %}
+
+
 
 {% block body %}
-    {# <div class="container">
-        <h1>Profil de l'utilisateur</h1>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Informations personnelles</h5>
-                <p class="card-text"><strong>Nom:</strong> {{ utilisateur.nom }}</p>
-                <p class="card-text"><strong>Prénom:</strong> {{ utilisateur.prenom }}</p>
-                <p class="card-text"><strong>Email:</strong> {{ utilisateur.email }}</p>
-                <hr>
-                <form method="post" action="{{ path('app_user_profile_update', { 'id': utilisateur.id }) }}">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Nouvel Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ utilisateur.email }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Nouveau Mot de passe</label>
-                        <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirm_password" class="form-label">Confirmer le Mot de passe</label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
-                </form>
-            </div>
-        </div>
-    </div> #}
+
+{% include "header/_header.html.twig" %}
+
+{% block stylessheets %} <link rel="stylesheet" href="{{ asset('css/ajoutUtilisateurForm.css') }}"> {% endblock %}
+
+    <h1>Modifier un utilisateur</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {% for message in app.flashes('success') %}
+    <p>{{ message }}
+    {% endfor %}
+
+    {{ form_start(registrationForm) }}
+
+        {{ form_row(registrationForm.nom) }}
+        {{ form_row(registrationForm.prenom) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe'
+        }) }}
+        {{ form_row(registrationForm.roles) }}
+        {{ form_row(registrationForm.Accepter) }}
+
+        <button type="submit" class="btn">Enregistrer</button>
+    {{ form_end(registrationForm) }}
+
+
 {% endblock %}
