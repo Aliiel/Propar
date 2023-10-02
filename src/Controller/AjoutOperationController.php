@@ -85,13 +85,16 @@ class AjoutOperationController extends AbstractController
         //On verifie si le form est soumis Et valide
 
         if($operationForm ->isSubmitted() && $operationForm->isValid()){
-            $em->persist($operation);
-            $em->flush();
+
+                $operation->setEtat(1);
+                $em->persist($operation);
+                $em->flush();
 
                // Créez une nouvelle instance de Gerer pour enregistrer la relation
                $gerer = new Gerer();
                $gerer->setOperationKey($operation);
                $gerer->setUtilisateurKey($user);
+               
 
                $em->persist($gerer);
                $em->flush();

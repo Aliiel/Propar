@@ -17,6 +17,10 @@
 
     <section>
 
+     {% for message in app.flashes('success') %}
+        <div class="flash-success">{{ message }}
+      {% endfor %}
+      
     <div class="formulaire">
     <div class="corpsForm">
       {{ form_start(form) }}
