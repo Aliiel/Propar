@@ -152,6 +152,12 @@
     text-decoration: none;
     color: black;
   }
+
+  p a {
+    text-decoration: underline;
+    color:black;
+
+  }
   
   /* Styles pour les messages flash */
   .flash-success,
