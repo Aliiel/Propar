@@ -6,13 +6,13 @@
 
 {% block body %}
 
-{# {% include "header/_header.html.twig" %} #}
+{% include "header/_header.html.twig" %}
 
 {% block stylessheets %} <link rel="stylesheet" href="{{ asset('css/ajoutUtilisateurForm.css') }}"> {% endblock %}
 
     <h1>Modifier un utilisateur</h1>
 
-    {# {{ form_errors(registrationForm) }}
+    {{ form_errors(registrationForm) }}
 
     {% for message in app.flashes('success') %}
     <p>{{ message }}
@@ -30,7 +30,7 @@
         {{ form_row(registrationForm.Accepter) }}
 
         <button type="submit" class="btn">Enregistrer</button>
-    {{ form_end(registrationForm) }} #}
+    {{ form_end(registrationForm) }}
 
 
 {% endblock %}
