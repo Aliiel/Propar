@@ -1,43 +1,56 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Utilisateur{% endblock %} {%
+block stylesheets %}
 
-{% block title %}Utilisateur{% endblock %}
+<link rel="stylesheet" href="{{ asset('css/show.css') }}" />
 
-{% block body %}
-    <h1>Utilisateur</h1>
+{% endblock %} {% block body %} {% include "header/_header.html.twig" %}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ utilisateur.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ utilisateur.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>
-                {% for role in utilisateur.roles %}
+<h1>Details de l'utilisateur : {{utilisateur.nom}}</h1>
 
-                    {{ role }}
+<section>
+<div class="main_consult">
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Id</th>
+        <td>{{ utilisateur.id }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ utilisateur.email }}</td>
+      </tr>
+      <tr>
+        <th>Roles</th>
+        <td>
+          {% for role in utilisateur.roles %}
 
-                    {% endfor %} </td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ utilisateur.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ utilisateur.prenom }}</td>
-            </tr>
-        </tbody>
-    </table>
+          {{ role }}
 
-    <a href="{{ path('app_utilisateur_index') }}">back to list</a>
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <th>Nom</th>
+        <td>{{ utilisateur.nom }}</td>
+      </tr>
+      <tr>
+        <th>Prenom</th>
+        <td>{{ utilisateur.prenom }}</td>
+      </tr>
+    </tbody>
 
-    <a href="{{ path('app_utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+  </table>
+  <div class="btn_groupe">
 
-    {{ include('utilisateur/_delete_form.html.twig') }}
+     <a href="{{ path('app_utilisateur_edit', { id: utilisateur.id }) }}"><button class="btn modif">Modifier</button>
+       </a>
+
+      {{ include("utilisateur/_delete_form.html.twig") }}
+    </div>
+    <a href="{{ path('app_liste_utilisateur') }}"><button class="btn liste">Retour à la liste</button></a>
+
+</div>
+<img src="{{asset('image/menage.jpg')}}" alt="homme cleaning" width="50%">
+</section>
+
 {% endblock %}

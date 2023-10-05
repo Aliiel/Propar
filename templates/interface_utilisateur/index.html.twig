@@ -10,9 +10,6 @@
 {% block body %} 
 {% include "header/_header.html.twig" %}
 
-{% dump(is_granted('EXPERT')) %}
-
-{% if is_granted('EXPERT') %}
 
 
 <div class="example-wrapper">
@@ -93,7 +90,7 @@
 </div>
 
 
-{# {% else %} #}
+
 <div class="example-wrapper">
   <h1>Interface utilisateur</h1>
 
@@ -139,8 +136,7 @@
 
   </section>
 </div>
-{# 
-{% endif %} #}
+
 
 
 {% endblock %}
