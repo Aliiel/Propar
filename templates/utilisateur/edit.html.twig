@@ -1,13 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Utilisateur{% endblock %}
+{% block title %}Utilisateur  {% endblock %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{{ asset('css/crud.css') }}" />
+
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Utilisateur</h1>
 
-    {{ include('utilisateur/_form.html.twig', {'button_label': 'Update'}) }}
+{% include "header/_header.html.twig" %} 
 
-    <a href="{{ path('app_utilisateur_index') }}">back to list</a>
-
+    <h1>Utilisateur {{utilisateur.nom}} {{utilisateur.prenom}}</h1>
+    <section>
+   <img src="{{asset('image/avatar.png')}}" alt="avatar" width="50%" border-radius="10px">
+<div class="main_form">   
+    {{ include('utilisateur/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
     {{ include('utilisateur/_delete_form.html.twig') }}
+
+    <a href="{{ path('app_liste_utilisateur') }}"><button class="btn liste">Retour à la liste</button></a>
+</div>
+  </section>
 {% endblock %}
