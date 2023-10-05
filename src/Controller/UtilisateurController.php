@@ -31,7 +31,6 @@ class UtilisateurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $selectedRoles = $form->get('roles')->getData();
             $utilisateur->setRoles($selectedRoles);
 
@@ -39,12 +38,13 @@ class UtilisateurController extends AbstractController
                 $userPasswordHasher->hashPassword(
                     $utilisateur,
                     $form->get('plainPassword')->getData()
-                    )
-                );
+                )
+            );
+
             $entityManager->persist($utilisateur);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_utilisateur_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_liste_utilisateur', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('utilisateur/new.html.twig', [
@@ -63,6 +63,7 @@ class UtilisateurController extends AbstractController
         ]);
     }
 
+
     #[Route('/{id}/edit', name: 'app_utilisateur_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, $id, UtilisateurRepository $utilisateurRepository, EntityManagerInterface $entityManager): Response
     {
@@ -75,7 +76,7 @@ class UtilisateurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_utilisateur_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_liste_utilisateur', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('utilisateur/edit.html.twig', [
@@ -84,15 +85,14 @@ class UtilisateurController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/{id}', name: 'app_utilisateur_delete', methods: ['POST'])]
-    public function delete(Request $request, $id, UtilisateurRepository $utilisateurRepository, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Utilisateur $utilisateur, EntityManagerInterface $entityManager): Response
     {
+        $entityManager->remove($utilisateur);
+        $entityManager->flush();
 
-        $utilisateur = $utilisateurRepository->find($id);
-
-            $entityManager->remove($utilisateur);
-            $entityManager->flush();
-
-        return $this->redirectToRoute('app_utilisateur_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_liste_utilisateur', [], Response::HTTP_SEE_OTHER);
     }
 }

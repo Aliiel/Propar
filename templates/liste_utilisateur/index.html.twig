@@ -1,38 +1,35 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Liste Utilisateur{% endblock %}
-
-{% block body %}
-
-{% include "header/_header.html.twig" %}
-
+{% extends 'base.html.twig' %} {% block title %}Liste Utilisateur{% endblock %}
+{% block body %} {% include "header/_header.html.twig" %} 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{asset('css/listeUtilisateurs.css')}}">
+<link rel="stylesheet" href="{{ asset('css/listeUtilisateurs.css') }}" />
 {% endblock %}
-<style>
-
-</style>
- <h1> Liste des utilisateurs </h1>
+<style></style>
+<h1>Liste des utilisateurs</h1>
 <div class="main">
-   
+  {% for utilisateur in utilisateurs %}
 
-    {% for utilisateur in utilisateurs %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">
+        Utilisateur : {{  utilisateur.nom ~ ' ' ~ utilisateur.prenom  }}
+      </h5>
+      <p class="card-text">
+        Roles : {% for role in utilisateur.roles %}
+        <li>{{ role }}</li>
+        {% endfor %}
+      </p>
+      <div>
+        <a href="{{ path('app_utilisateur_show', { id: utilisateur.id }) }}"
+          ><button class="button consult">Consulter</button></a
+        >
+        <a href="{{ path('app_utilisateur_edit', { id: utilisateur.id }) }}"
+          ><button class="button modif">Modifier</button></a
+        >
+      </div>
 
-  
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Utilisateur : {{  utilisateur.nom ~ ' ' ~ utilisateur.prenom  }}</h5>
-                <p class="card-text">Roles :     
-                    {% for role in utilisateur.roles %}
-                    <li>{{ role }}</li>
-                    {% endfor %} 
-                </p>
-                <a href="{{ path('app_details_utilisateur', {'id': utilisateur.id}) }}"><button>Consulter</button></a>
-                <!-- Ajoutez d'autres données d'opération si nécessaire -->
-            </div>
-        </div>
-    {% endfor %}
-
- 
+      <!-- Ajoutez d'autres données d'opération si nécessaire -->
+    </div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}
