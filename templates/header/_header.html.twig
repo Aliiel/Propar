@@ -1,39 +1,47 @@
-{% block stylessheets %}<link rel="stylesheet" href="{{ asset('css/header.css') }}"> {% endblock %}
-
+{% block stylessheets %}<link
+  rel="stylesheet"
+  href="{{ asset('css/header.css') }}"
+/>
+{% endblock %}
 
 <div class="head">
-   <a href="{{ path('app_accueil') }}"><img src="{{asset('image/logo.png')}}" alt="logo" width='150px'></a>
+  <a href="{{ path('app_accueil') }}"
+    ><img src="{{ asset('image/logo.png') }}" alt="logo" width="150px"
+  /></a>
 
-   <div class="element2_head">
-        {% if  app.user %}
-        <nav>
-        <ul>
-            <img src="{{asset('image/utilisateur.png')}}" width='50px'>
-            <li class="dropdown">
-                <ul class="sous">
-                    <li><a href="#"><button class='button_auth'>Mes informations</button></a></li>
-                    <li><a href="#"><button class='button_auth'>Mes opérations</button></a></li>
-                    <li><a href="{{ path('app_logout') }}"><button class='button_auth'>Se déconnecter</button></a></li>
-                </ul>            
-            </li>
-        </ul>
-        </nav>
-        {% else %}
-        <nav>
-        <ul>
-            <li><a href="{{ path('app_login') }}"><button class='button_auth'>Se connecter</button></a></li>
-        </ul>
-        </nav>
-        {% endif %}
+  <div class="element2_head">
+    {% if app.user %}
+    <div id="avatar">
+      <img src="{{ asset('image/utilisateur_logged.png') }}" width="50px" />
+      <p>
+        Vous êtes connecté. <br />
+        Bonjour {{ app.user.getPrenom() }} {{ app.user.getNom() }} .
+      </p>
     </div>
+
+    <a href="{{ path('app_logout') }}"
+      ><button class="button_auth delete">Se déconnecter</button></a
+    >
+    <a href="{{ path('app_interface_utilisateur') }}"
+      ><button class="button_auth">Mon espace</button></a
+    >
+    <a href="#"><button class="button_auth">Mes opérations</button></a>
+
+    {% else %}
+    <div id="btn_offline">
+    
+    
+    <img src="{{ asset('image/utilisateur_unlogged.png') }}" width="50px" />
+    <a href="{{ path('app_login') }}"
+      ><button class="button_auth">Se connecter</button></a
+    >
+    </div>
+    {% endif %}
+  </div>
 </div>
 
-   
-
-    {# {% if is_granted('EXPERT') %}
-    <p>L'administrateur est un expert.</p>
+{# {% if is_granted('EXPERT') %}
+<p>L'administrateur est un expert.</p>
 {% else %}
-    <p>L'administrateur n'est pas un expert.</p>
+<p>L'administrateur n'est pas un expert.</p>
 {% endif %} #}
-
-   
