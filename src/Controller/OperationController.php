@@ -83,11 +83,12 @@ class OperationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_operation_closed', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_operation_closed', methods: ['GET'])]
+
     public function closed(Request $request, Operation $operation, EntityManagerInterface $entityManager): Response
 
     {
-
+        
         $operation->setEtat(2);
         $entityManager->persist($operation);
         $entityManager->flush();
