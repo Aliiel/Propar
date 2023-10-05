@@ -32,10 +32,10 @@
       <div>
         <a href="{{path('app_accueil')}}"><div class="icone_nav">
           <img src="{{ asset('image/liste.png') }}" alt="Logo liste" />
-        </div>
+        </div></a>
         <h4>Liste d'opérations</h4>
       </div>
-    </a>
+    
     </div>
 
     <div class="onglet">
@@ -55,10 +55,10 @@
       <div>
         <a href="{{path('app_liste_utilisateur')}}"><div class="icone_nav">
           <img src="{{ asset('image/groupe.png') }}" alt="Logo groupe" />
-        </div>
+        </div>   </a>
         <h4>Gérer les utilisateurs</h4>
       </div>
-    </a>
+ 
     </div>
 
     <div class="onglet">
@@ -68,9 +68,9 @@
             src="{{ asset('image/verifier.png') }}"
             alt="Logo operations terminées"
           />
-        </div>
-      </a>
-        <h4>Liste d'opérations terminées</h4>
+        </div></a>
+      
+        <h4>Mes opérations</h4>
       </div>
     </div>
 
@@ -81,13 +81,26 @@
             src="{{ asset('image/chiffre-daffaires.png') }}"
             alt="Logo voir CA"
           />
-        </div>
-      </a>
+        </div></a>
+      
         <h4>Consulter le CA</h4>
       </div>
     </div>
   </section>
 </div>
+
+   <div class="onglet">
+      <div>
+        <a href="{{ path('app_utilisateur_show', {'id': app.user.id}) }}"><div class="icone_nav">
+          <img
+            src="{{ asset('image/details.png') }}"
+            alt="Logo mes informations"
+          />
+        </div>
+      </a>
+        <h4>Mes informations</h4>
+      </div>
+    </div>
 
 
 
@@ -100,10 +113,10 @@
       <div>
         <a href="{{path('app_accueil')}}"><div class="icone_nav">
           <img src="{{ asset('image/liste.png') }}" alt="Logo liste" />
-        </div>
+        </div>  </a>
         <h4>Liste d'opérations</h4>
       </div>
-    </a>
+    
     </div>
 
     <div class="onglet">
@@ -119,8 +132,6 @@
       </div>
     </div>
 
- 
-
     <div class="onglet">
       <div>
         <a href=""><div class="icone_nav">
@@ -130,7 +141,20 @@
           />
         </div>
       </a>
-        <h4>Liste d'opérations terminées</h4>
+        <h4>Mes opérations</h4>
+      </div>
+    </div>
+
+    <div class="onglet">
+      <div>
+        <a href="{{ path('app_utilisateur_show', {'id': app.user.id}) }}"><div class="icone_nav">
+          <img
+            src="{{ asset('image/details.png') }}"
+            alt="Logo mes informations"
+          />
+        </div>
+      </a>
+        <h4>Mes informations</h4>
       </div>
     </div>
 

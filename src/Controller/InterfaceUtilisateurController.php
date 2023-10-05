@@ -13,9 +13,13 @@ class InterfaceUtilisateurController extends AbstractController
     public function index(): Response
     {
 
+       
+
+        // Faites quelque chose avec l'ID de l'utilisateur
+        // ...
 
         return $this->render('interface_utilisateur/index.html.twig', [
-            'controller_name' => 'InterfaceUtilisateurController',
+            'controller_name' => 'InterfaceUtilisateurController'
         ]);
     }
 }
