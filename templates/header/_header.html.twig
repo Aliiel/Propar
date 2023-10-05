@@ -40,8 +40,10 @@
   </div>
 </div>
 
-{# {% if is_granted('EXPERT') %}
-<p>L'administrateur est un expert.</p>
+
+
+{# {% if app.user.getRoles()[0] == 'EXPERT' %}
+    <p>L'administrateur est un expert.</p>
 {% else %}
-<p>L'administrateur n'est pas un expert.</p>
+    <p>L'administrateur n'est pas un expert.</p>
 {% endif %} #}
