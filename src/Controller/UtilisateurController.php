@@ -14,45 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/utilisateur')]
 class UtilisateurController extends AbstractController
+
 {
-    #[Route('/', name: 'app_utilisateur_index', methods: ['GET'])]
-    public function index(UtilisateurRepository $utilisateurRepository): Response
-    {
-        return $this->render('utilisateur/index.html.twig', [
-            'utilisateurs' => $utilisateurRepository->findAll(),
-        ]);
-    }
-
-    #[Route('/new', name: 'app_utilisateur_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
-    {
-        $utilisateur = new Utilisateur();
-        $form = $this->createForm(UtilisateurType::class, $utilisateur);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $selectedRoles = $form->get('roles')->getData();
-            $utilisateur->setRoles($selectedRoles);
-
-            $utilisateur->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $utilisateur,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-
-            $entityManager->persist($utilisateur);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_liste_utilisateur', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('utilisateur/new.html.twig', [
-            'utilisateur' => $utilisateur,
-            'form' => $form,
-        ]);
-    }
-
+    
     #[Route('/{id}', name: 'app_utilisateur_show', methods: ['GET'])]
     public function show(UtilisateurRepository $utilisateurRepository, int $id): Response
     {
