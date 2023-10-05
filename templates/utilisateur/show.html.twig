@@ -11,16 +11,16 @@ block stylesheets %}
 <div class="main_consult">
   <table class="table">
     <tbody>
-      <tr>
+      {# <tr>
         <th>Id</th>
         <td>{{ utilisateur.id }}</td>
-      </tr>
+      </tr> #}
       <tr>
-        <th>Email</th>
+        <th>Email: </th>
         <td>{{ utilisateur.email }}</td>
       </tr>
       <tr>
-        <th>Roles</th>
+        <th>Role:</th>
         <td>
           {% for role in utilisateur.roles %}
 
@@ -30,17 +30,17 @@ block stylesheets %}
         </td>
       </tr>
       <tr>
-        <th>Nom</th>
+        <th>Nom: </th>
         <td>{{ utilisateur.nom }}</td>
       </tr>
       <tr>
-        <th>Prenom</th>
+        <th>Prenom: </th>
         <td>{{ utilisateur.prenom }}</td>
       </tr>
     </tbody>
 
   </table>
-  {% if app.user.getRoles()[0] == 'EXPERT' %}
+  
   <div class="btn_groupe">
 
      <a href="{{ path('app_utilisateur_edit', { id: utilisateur.id }) }}"><button class="btn modif">Modifier</button>
@@ -48,15 +48,13 @@ block stylesheets %}
 
 
   
-
+{% if app.user.getRoles()[0] == 'EXPERT' %}
       {{ include("utilisateur/_delete_form.html.twig") }}
-
+{% endif %}
  
 
 
     </div>   
-    
-    {% endif %}
     <a href="{{ path('app_liste_utilisateur') }}"><button class="btn liste">Retour à la liste</button></a>
 
 </div>

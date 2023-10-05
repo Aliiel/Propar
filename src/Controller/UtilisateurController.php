@@ -92,7 +92,7 @@ class UtilisateurController extends AbstractController
     {
         $entityManager->remove($utilisateur);
         $entityManager->flush();
-
+      
         return $this->redirectToRoute('app_liste_utilisateur', [], Response::HTTP_SEE_OTHER);
     }
 }
