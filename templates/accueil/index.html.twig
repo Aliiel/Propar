@@ -32,7 +32,7 @@
                     <h5 class="card-title">Opération #{{ operation.id }}</h5>
                     <p class="card-text">{{ operation.type}} €</p>
                     <p class="card-text">{{ operation.date_realisation|date('Y-m-d') }}</p>
-                    <button>Consulter</button>
+                    <a href = "{{ path('app_operation_show', {'id': operation.id}) }}"><button>Consulter</button></a>
                     <!-- Ajoutez d'autres données d'opération si nécessaire -->
                 </div>
             </div>

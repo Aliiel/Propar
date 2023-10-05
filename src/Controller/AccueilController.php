@@ -28,4 +28,6 @@ class AccueilController extends AbstractController
             'operations' => $operations,'operationsEnds' => $operationsEnds,
         ]);
     }
+
+    
 }
