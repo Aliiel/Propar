@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/operation')]
 class OperationController extends AbstractController
+
 {
     // #[Route('/new', name: 'app_operation_new', methods: ['GET', 'POST'])]
     // public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -44,6 +45,7 @@ class OperationController extends AbstractController
 
         $nomClient = $client->getNom();
         $prenomClient = $client->getPrenom();
+
 
         $etatOperation = $operation->getEtat();
 
@@ -89,7 +91,7 @@ class OperationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_operation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('operation/edit.html.twig', [
