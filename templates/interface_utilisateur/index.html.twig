@@ -11,6 +11,7 @@
 {% include "header/_header.html.twig" %}
 
 
+{% if app.user.getRoles()[0] == 'EXPERT' %}
 
 <div class="example-wrapper">
   <h1>Interface Administrateur</h1>
@@ -102,7 +103,7 @@
       </div>
     </div>
 
-
+{% else %}
 
 <div class="example-wrapper">
   <h1>Interface utilisateur</h1>
@@ -161,6 +162,6 @@
   </section>
 </div>
 
-
+{% endif %}
 
 {% endblock %}

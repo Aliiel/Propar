@@ -36,6 +36,7 @@
     transition: ease-in-out 0.4s;
     color: white;
     margin-right: 5%;
+    cursor: pointer;
 }
 
 .button_auth.delete:hover{
