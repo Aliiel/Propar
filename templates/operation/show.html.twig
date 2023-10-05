@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{{ asset('css/show.css') }}" />
+
+{% endblock %}
+
+{% block title %}Operation{% endblock %}
+
+{% block body %}
+
+{% include "header/_header.html.twig" %}
+
+
+    <h1>Operation n° {{ operation.id }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Etat de l'opération :</th>
+                <td>{{ etatOperation }}</td>
+            </tr>
+            <tr>
+                <th>Date de réalisation : </th>
+                <td>{{ operation.dateRealisation ? operation.dateRealisation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Client associé :</th>
+                <td>{{ nomClient }} {{ prenomClient }}</td>
+            </tr>
+             <tr>
+                <th>Type d'opération :</th>
+                <td>{{ typeOperation }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_accueil') }}">back to list</a>
+
+    <a href="{{ path('app_operation_edit', {'id': operation.id}) }}">edit</a>
+
+    {{ include('operation/_delete_form.html.twig') }}
+{% endblock %}
