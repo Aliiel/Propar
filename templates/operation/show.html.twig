@@ -14,32 +14,25 @@
 {% include "header/_header.html.twig" %}
 
 
-    <h1>Operation</h1>
+    <h1>Operation n° {{ operation.id }}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ operation.id }}</td>
+                <th>Etat de l'opération :</th>
+                <td>{{ etatOperation }}</td>
             </tr>
             <tr>
-                <th>Type</th>
-                <td>{{ operation.type }}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ operation.etat }}</td>
-            </tr>
-            <tr>
-                <th>Date_realisation</th>
+                <th>Date de réalisation : </th>
                 <td>{{ operation.dateRealisation ? operation.dateRealisation|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>Client</th>
-                <td>{{ operation.client_id }}</td>
-                <pre>
-                    {{ dump(operation.client_id) }}
-                </pre>
+                <th>Client associé :</th>
+                <td>{{ nomClient }} {{ prenomClient }}</td>
+            </tr>
+             <tr>
+                <th>Type d'opération :</th>
+                <td>{{ typeOperation }}</td>
             </tr>
         </tbody>
     </table>
