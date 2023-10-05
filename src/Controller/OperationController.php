@@ -14,31 +14,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/operation')]
+
 class OperationController extends AbstractController
 
 {
-    // #[Route('/new', name: 'app_operation_new', methods: ['GET', 'POST'])]
-    // public function new(Request $request, EntityManagerInterface $entityManager): Response
-    // {
-    //     $operation = new Operation();
-    //     $form = $this->createForm(OperationType::class, $operation);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $entityManager->persist($operation);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('app_operation_index', [], Response::HTTP_SEE_OTHER);
-    //     }
-
-    //     return $this->render('operation/new.html.twig', [
-    //         'operation' => $operation,
-    //         'form' => $form,
-    //     ]);
-    // }
-
     #[Route('/{id}', name: 'app_operation_show', methods: ['GET'])]
     public function show(Operation $operation): Response
+
     {
 
         $client = $operation->getClient();
@@ -84,6 +66,7 @@ class OperationController extends AbstractController
 
     #[Route('/{id}/edit', name: 'app_operation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Operation $operation, EntityManagerInterface $entityManager): Response
+
     {
         $form = $this->createForm(OperationType::class, $operation);
         $form->handleRequest($request);
@@ -100,14 +83,28 @@ class OperationController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'app_operation_closed', methods: ['POST'])]
+    public function closed(Request $request, Operation $operation, EntityManagerInterface $entityManager): Response
+
+    {
+
+        $operation->setEtat(2);
+        $entityManager->persist($operation);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
+
+    }   
+
     #[Route('/{id}', name: 'app_operation_delete', methods: ['POST'])]
     public function delete(Request $request, Operation $operation, EntityManagerInterface $entityManager): Response
+
     {
         if ($this->isCsrfTokenValid('delete'.$operation->getId(), $request->request->get('_token'))) {
             $entityManager->remove($operation);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_operation_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
     }
 }
