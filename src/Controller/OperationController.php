@@ -37,7 +37,7 @@ class OperationController extends AbstractController
     //     ]);
     // }
 
-    #[Route('/{id}', name: 'app_operation_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_operation_show', methods: ['GET'])]
     public function show(Operation $operation): Response
     {
 
@@ -82,7 +82,7 @@ class OperationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_operation_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'app_operation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Operation $operation, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(OperationType::class, $operation);

@@ -5,7 +5,6 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         users_in_memory: { memory: null }
-    
         user_provider: 
             entity: 
                 class: App\Entity\Utilisateur
@@ -32,10 +31,14 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-   
     - { path: ^/profil, roles: 'ROLE_USER' }
     - { path: ^/ajout/operation, roles: 'ROLE_USER' }
-    - { path: ^/register, roles: 'EXPERT' }
+    - { path: ^/interface/utilisateur, roles: 'ROLE_USER' }
+    - { path: ^/liste/utilisateur, roles: 'ROLE_USER' }
+    - { path: ^/operation/show, roles: 'ROLE_USER' }
+    - { path: ^/operation/edit, roles: 'ROLE_USER' }
+
+    # - { path: ^/register, roles: 'EXPERT' }
 
 
     role_hierarchy:

@@ -9,7 +9,7 @@
   {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/ajoutUtilisateurForm.css') }}">
   {% endblock %}
-
+{% if app.user.getRoles()[0] == 'EXPERT' %}
   <div class="main">
     <div class="element1">
       <h1>Création d'un nouvel utilisateur</h1>
@@ -44,5 +44,8 @@
 </section>
 
   </div>
+{% else %}
+<h1>Acces Non Autorisé</h1>
+{% endif %}
 
 {% endblock %}
