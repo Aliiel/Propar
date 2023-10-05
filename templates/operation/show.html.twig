@@ -34,6 +34,13 @@
                 <th>Date_realisation</th>
                 <td>{{ operation.dateRealisation ? operation.dateRealisation|date('Y-m-d') : '' }}</td>
             </tr>
+            <tr>
+                <th>Client</th>
+                <td>{{ operation.client_id }}</td>
+                <pre>
+                    {{ dump(operation.client_id) }}
+                </pre>
+            </tr>
         </tbody>
     </table>
 

@@ -37,6 +37,7 @@ class OperationController extends AbstractController
     #[Route('/{id}', name: 'app_operation_show', methods: ['GET'])]
     public function show(Operation $operation): Response
     {
+
         return $this->render('operation/show.html.twig', [
             'operation' => $operation,
         ]);
