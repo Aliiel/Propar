@@ -38,6 +38,11 @@
     margin-right: 5%;
     cursor: pointer;
 }
+.button_auth:hover{
+   
+    background-color:#426950;
+  
+}
 
 .button_auth.delete:hover{
     background-color: #ff0505;
