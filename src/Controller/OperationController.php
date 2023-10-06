@@ -83,17 +83,19 @@ class OperationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_operation_closed', methods: ['GET'])]
+    #[Route('/{id}/closed', name: 'app_operation_closed', methods: ['GET'])]
 
     public function closed(Request $request, Operation $operation, EntityManagerInterface $entityManager): Response
 
     {
-        
+
         $operation->setEtat(2);
         $entityManager->persist($operation);
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
+        return $this->render('accueil/index.html.twig', [
+            'operation' => $operation,
+        ]);
 
     }   
 
