@@ -41,6 +41,12 @@ h2{
     border-radius: 10px;
     text-align: center;
 }
+h3{
+    background-color: #011C27;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
 
 button{
     background-color: #426950;
@@ -58,24 +64,33 @@ button:hover{
 }
 
 .card-body{
+    font-family: 'Poppins Light';
     border-radius: 10px;
     background-color: #ffffff;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     height: 90%;   
     border: 8px solid #426950;
 }
+.card-body.expert{
+
+    border: 8px solid #426950;
+}
+.card-body.senior{   
+    border: 8px solid #78B262;
+}
+.card-body.apprenti{
+    border: 8px solid #011C27;
+}
 
 .card{
- 
- 
     border-radius: 10px;
-    flex: 1; /* Chaque bloc prend autant d'espace que possible pour remplir la ligne */
-    /* Autres styles pour vos blocs */
-    margin: 10px; /* Ajoutez une marge entre les blocs pour l'espacement */
-     /* Calculez la largeur de chaque bloc pour qu'il y en ait quatre sur une ligne */
+    flex: 1;
+    margin: 10px;
+    width: 50%;
   }
 .row{
     margin-top: 5%;
@@ -93,6 +108,8 @@ h2{
     margin: auto 20%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h5{
