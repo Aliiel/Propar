@@ -93,10 +93,7 @@ class OperationController extends AbstractController
         $entityManager->persist($operation);
         $entityManager->flush();
 
-        return $this->render('accueil/index.html.twig', [
-            'operation' => $operation,
-        ]);
-
+        return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
     }   
 
     #[Route('/{id}', name: 'app_operation_delete', methods: ['POST'])]
