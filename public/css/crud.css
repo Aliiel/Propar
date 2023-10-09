@@ -17,6 +17,9 @@
 
 body {
   background-image: url(../image/fond\ accueil.png);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
 section {
