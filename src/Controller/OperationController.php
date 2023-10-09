@@ -18,9 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class OperationController extends AbstractController
 
 {
-<<<<<<< HEAD
     #[Route('/{id}', name: 'app_operation_show', methods: ['GET'])]
-=======
     // #[Route('/new', name: 'app_operation_new', methods: ['GET', 'POST'])]
     // public function new(Request $request, EntityManagerInterface $entityManager): Response
     // {
@@ -42,7 +40,6 @@ class OperationController extends AbstractController
     // }
 
     #[Route('/show/{id}', name: 'app_operation_show', methods: ['GET'])]
->>>>>>> 19aa47bc776bd5f491de70c2767df2a188d520a5
     public function show(Operation $operation): Response
 
     {

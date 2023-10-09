@@ -39,7 +39,6 @@
         <p>Aucun chiffre d'affaires calculé pour les dates sélectionnées.</p>
     {% endif %}
 </div>
-<<<<<<< HEAD
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -66,41 +65,9 @@
                 y: {
                     beginAtZero: true
                 }
-=======
-<script>
-$(document).ready(function() {
-    // Interceptez le formulaire de filtrage
-    $('form').submit(function(event) {
-        event.preventDefault(); // Empêche la soumission normale du formulaire
-        var formData = $(this).serialize(); // Récupérez les données du formulaire
-        $.ajax({
-            type: 'GET',
-            url: $(this).attr('action'),
-            data: formData,
-            success: function(data) {
-                // Mettez à jour la page avec les données filtrées (par exemple, les résultats et le graphique)
-                // Vous devrez implémenter cette mise à jour en fonction de votre logique spécifique.
-                 updateOperations(data);
->>>>>>> 19aa47bc776bd5f491de70c2767df2a188d520a5
             }
         }
     });
-<<<<<<< HEAD
 </script>
 
 {% endblock %}
-=======
-     function updateOperations(data) {
-        var ul = $('#operation-list');
-        ul.empty();
-        $.each(data.filtered_operations, function(index, item) {
-            var li = $('<li>').text('Date : ' + item.date_realisation + ', chiffre d\'affaire : ' + item.total + ' €');
-            ul.append(li);
-        });
-    }
-});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-{% endblock %}
->>>>>>> 19aa47bc776bd5f491de70c2767df2a188d520a5
