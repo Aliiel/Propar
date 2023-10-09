@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Operation;
 use App\Entity\Client;
+use App\Entity\Gerer;
 use App\Entity\Utilisateur;
 use App\Form\OperationType;
 use App\Repository\OperationRepository;
@@ -83,29 +84,29 @@ class OperationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_operation_closed', methods: ['GET'])]
+    #[Route('/{id}/closed', name: 'app_operation_closed', methods: ['GET'])]
 
-    public function closed(Request $request, Operation $operation, EntityManagerInterface $entityManager): Response
+    public function closed(Operation $operation, EntityManagerInterface $entityManager): Response
 
     {
-        
+
         $operation->setEtat(2);
         $entityManager->persist($operation);
         $entityManager->flush();
 
         return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
-
     }   
 
     #[Route('/{id}', name: 'app_operation_delete', methods: ['POST'])]
-    public function delete(Request $request, Operation $operation, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Operation $operation, Gerer $gerer, EntityManagerInterface $entityManager): Response
 
     {
-        if ($this->isCsrfTokenValid('delete'.$operation->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$operation->getId(), 'delete' .$gerer->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($gerer);
             $entityManager->remove($operation);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
     }
 }
