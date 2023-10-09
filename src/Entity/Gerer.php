@@ -13,6 +13,7 @@ class Gerer
     #[ORM\Column]
     private ?int $id = null;
 
+    
     #[ORM\ManyToOne(inversedBy: 'gerers')]
     private ?Operation $operation_key = null;
 
