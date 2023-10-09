@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{{ asset('css/show.css') }}" />
+
+{% endblock %}
+
+{% block title %}Modifier une opération{% endblock %}
+
+{% block body %}
+
+{% include "header/_header.html.twig" %}
+
+
+    <h1>Modifier l'opération n° {{ operation.id }}</h1>
+
+    {{ include('operation/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+    <a href="{{ path('app_accueil') }}">Retour à la liste</a>
+
+    {{ include('operation/_delete_form.html.twig') }}
+{% endblock %}

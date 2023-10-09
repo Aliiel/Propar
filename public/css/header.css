@@ -17,61 +17,55 @@
     align-items: center;
 }
 
-.head:first-child{
-    justify-self: flex-start;
-}
 .element2_head{
     display: flex;
-    justify-content: end;
+    width: 60%;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
 }
 
-/* .element2_head ul{
-    display: flex;
-    gap: 100px;
-    margin-right: 10%;
-    font-size: 1.5em;
-    font-family: 'Poppins Light';
-}
-} */
 
-#button_auth{
+.button_auth{
     font-family: 'Poppins Light';
-    background-color: #426950;
+    background-color: #011C27;
     border: none;
     border-radius: 10px;
     padding: 10px;
     text-align: center;
     transition: ease-in-out 0.4s;
     color: white;
+    margin-right: 5%;
+    cursor: pointer;
 }
-#button_auth:hover{
-    background-color: #78B262;
-    
-}
-
-.dropdown {
-    position: relative;
-}
-
-.dropdown:hover .sous {
-    display: block;
-    position: absolute; 
-    top: 100%;
-    left: 0;
-    border-top: none;
-    z-index: 1000;
-    width: 200px; 
-    padding: 10px;
+.button_auth:hover{
+   
+    background-color:#426950;
+  
 }
 
-.dropdown:hover .button_auth {
-    background-color: #426950;
+.button_auth.delete:hover{
+    background-color: #ff0505;
+}
+
+#btn_offline{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+}
+
+#avatar{
+    font-family: 'Poppins Light';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 nav{
-    /* width: 100%; */
     margin: 0 auto;
-    position: sticky;
     top: 0px;
 }
 
@@ -81,55 +75,21 @@ nav ul{
 }
 
 nav ul li{
-    /* float: left; */
+   
     width: 25%;
     text-align: center;
-    position: relative;
-}
-
-nav ul::after{
-    content: "";
-    display: table;
-    clear: both;
-}
-
-nav a{
-    display: block;
-    text-decoration: none;
-    color: black;
-    border-bottom: 2px solid transparent;
-    padding: 10px 0px;
-}
-
-.sous{
-    /* display: none; */
-    /* box-shadow: 0px 1px 2px #CCC; */
-    /* background-color: white; */
-    /* position: absolute; */
-    width: 100%;
-    z-index: 1000;
+    
 }
 
 
-nav > ul li:hover .sous{
-    display: block;
-}
-
-
-/* .sous li{
-    float: none;
-    /* width: 100%; */
-    /* text-align: left; */
 
 
 
-.sous a{
-    padding: 10px;
-    border-bottom: none;
-}
 
 
-.sous a:hover{
-    border-bottom: none;
-}
+
+
+
+
+
 

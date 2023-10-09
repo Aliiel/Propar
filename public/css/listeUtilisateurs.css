@@ -50,22 +50,33 @@ h2{
 }
 
 button{
+    font-family: 'Poppins Light';
     background-color: #426950;
     ;
     border: none;
     border-radius: 10px;
     padding: 10px;
     text-align: center;
-    transition: ease-in-out 0.4s;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
     color: white;
 }
 button:hover{
-    background-color: #78B262;
-    ;
+    background-color: #F8F4D7;
+    color: black;
+    border: 2px solid black;
     
 }
 
+.modif{
+    background-color: #011C27;
+}
+
+.consult{
+    background-color: #78B262;
+}
+
 .card-body{
+    font-family: 'Poppins Light';
     border-radius: 10px;
     background-color: #ffffff77;
     padding: 20px;

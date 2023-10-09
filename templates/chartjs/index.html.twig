@@ -9,7 +9,11 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     .total-wrapper { background-color: #426950; padding: 20px; text-align: center; }
     .total-text { font-size: 24px; font-weight: #f5f5f5; }
+    .total-wrapper { background-color: #426950; padding: 20px; text-align: center; }
+    .total-text { font-size: 24px; font-weight: #f5f5f5; }
 </style>
+
+{% include "header/_header.html.twig" %}
 
 <div class="example-wrapper">
     <div class="total-wrapper">
@@ -24,6 +28,30 @@
 
 <canvas id="chart"></canvas>
     {{ render_chart(chart, {'id': 'chart'}) }}
+
+    <form method="get" action="{{ path('app_chiffre_affaires') }}">
+        <label for="annee">Année :</label>
+        <input type="text" name="annee" id="annee" placeholder="Exemple : 2023" />
+
+        <label for="type_operation">Type d'Opération :</label>
+    <select name="type_operation" id="type_operation">
+        <option value="">Tous</option> <!-- Option pour afficher tous les types d'opération -->
+        <option value="1">En cours</option>
+        <option value="2">Fini</option>
+        <!-- Ajoutez d'autres options de type d'opération au besoin -->
+    </select>
+
+  <label for="utilisateur">Utilisateur :</label>
+<select name="utilisateur" id="utilisateur">
+    <option value="">Tous</option> <!-- Option pour afficher toutes les utilisateurs -->
+    {% for utilisateur in utilisateurs %}
+        <option value="{{ utilisateur.id }}">{{ utilisateur.nom }}</option>
+    {% endfor %}
+</select>
+
+
+        <button type="submit">Filtrer</button>
+    </form>
 
     <form method="get" action="{{ path('app_chiffre_affaires') }}">
         <label for="annee">Année :</label>
