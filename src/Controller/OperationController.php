@@ -85,7 +85,6 @@ class OperationController extends AbstractController
     }
 
     #[Route('/{id}/closed', name: 'app_operation_closed', methods: ['GET'])]
-
     public function closed(Operation $operation, EntityManagerInterface $entityManager): Response
 
     {
@@ -97,16 +96,22 @@ class OperationController extends AbstractController
         return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
     }   
 
+
     #[Route('/{id}', name: 'app_operation_delete', methods: ['POST'])]
-    public function delete(Request $request, Operation $operation, Gerer $gerer, EntityManagerInterface $entityManager): Response
+    public function delete(Operation $operation, Gerer $gerer, EntityManagerInterface $entityManager): Response
 
     {
-        if ($this->isCsrfTokenValid('delete'.$operation->getId(), 'delete' .$gerer->getId(), $request->request->get('_token'))) {
+
+        
+            $operation->getId();
+            $gerer->getId();
+
+            var_dump($gerer);
             $entityManager->remove($gerer);
             $entityManager->remove($operation);
             $entityManager->flush();
-        }
 
-        return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
-    }
+            return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
+        }
+    
 }
