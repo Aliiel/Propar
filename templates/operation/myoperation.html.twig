@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/accueil.css') }}" />
+{% endblock %}
+
+{% block title %}Mes Opérations{% endblock %}
+
+{% block body %}
+    {% include "header/_header.html.twig" %}
+
+    <h1>Mes opérations</h1>
+<div class="container">
+   
+        {% for operation in operations %} 
+    <div class="card">
+    <div class="card-body senior">
+            <h4>Opération n° {{ operation.id }}</h4>
+            <p>Type: {{ typeOperation }}</p>
+            <p>État: {{ etatOperation }}</p>
+              <a href="{{ path('app_operation_show', { 'id': operation.id }) }}"
+        ><button>Consulter</button></a>
+    </div>
+    </div>
+        {% endfor %}
+    
+</div>
+
+    <a href="{{ path('app_accueil') }}">Retour à la liste</a>
+{% endblock %}
