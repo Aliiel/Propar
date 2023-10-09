@@ -102,7 +102,6 @@ class OperationController extends AbstractController
 
     {
 
-        
             $operation->getId();
             $gerer->getId();
 
