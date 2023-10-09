@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %} {# Ajouter des routes pour naviguer avec le menu
-#} {% block title %}Interface Utilisateur{% endblock %} {% block stylesheets %}
+#} {% block title %}Interface{% endblock %} {% block stylesheets %}
 
 <link rel="stylesheet" href="{{ asset('css/interfaceAdmin.css') }}" />
 
@@ -8,13 +8,13 @@
 
 
 {% block body %} 
-{% include "header/_header.html.twig" %}
+
 
 {% dump(is_granted('EXPERT')) %}
 
-{% if is_granted('EXPERT') %}
+{% if is_granted("EXPERT") %}
 
-
+{% dump("EXPERT") %}
 <div class="example-wrapper">
   <h1>Interface Administrateur</h1>
 

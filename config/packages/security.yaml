@@ -35,6 +35,8 @@ security:
     # - { path: ^/admin, roles: 'EXPERT' }
     - { path: ^/profil, roles: 'ROLE_USER' }
     - { path: ^/ajout/operation, roles: 'ROLE_USER' }
+    - { path: ^/operations, roles: ROLE_USER }
+    # - { path: '^/admin', roles: ROLE_EXPERT }
     # - { path: ^/register, roles: 'EXPERT' }
 
 

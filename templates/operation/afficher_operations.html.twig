@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Liste des opérations de l'utilisateur</h1>
+    <ul>
+        {% for operation in app.user.operations %}
+            <li>{{ operation.id }} - {{ operation.description }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
