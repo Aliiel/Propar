@@ -93,6 +93,12 @@ class OperationController extends AbstractController
         $entityManager->persist($operation);
         $entityManager->flush();
 
+        // $pdf = $this->generateInvoicePdf($operation);
+
+        // $this->sendInvoiceEmail($operation->getClient(), $pdf, $mailer);
+
+
+
         return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
     }   
 

@@ -14,8 +14,8 @@
     <div id="avatar">
       <img src="{{ asset('image/utilisateur_logged.png') }}" width="50px" />
       <p>
-        Vous êtes connecté. <br />
-        Bonjour {{ app.user.getPrenom() }} {{ app.user.getNom() }} .
+        Vous êtes connecté <br />
+        Bonjour {{ app.user.getPrenom() }} {{ app.user.getNom() }} 
       </p>
     </div>
 
@@ -32,9 +32,8 @@
     
     
     <img src="{{ asset('image/utilisateur_unlogged.png') }}" width="50px" />
-    <a href="{{ path('app_login') }}"
-      ><button class="button_auth">Se connecter</button></a
-    >
+    <a href="{{ path('app_login') }}">
+    <button class="button_auth">Se connecter</button></a>
     </div>
     {% endif %}
   </div>
