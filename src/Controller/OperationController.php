@@ -18,7 +18,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class OperationController extends AbstractController
 
 {
+<<<<<<< HEAD
     #[Route('/{id}', name: 'app_operation_show', methods: ['GET'])]
+=======
+    // #[Route('/new', name: 'app_operation_new', methods: ['GET', 'POST'])]
+    // public function new(Request $request, EntityManagerInterface $entityManager): Response
+    // {
+    //     $operation = new Operation();
+    //     $form = $this->createForm(OperationType::class, $operation);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager->persist($operation);
+    //         $entityManager->flush();
+
+    //         return $this->redirectToRoute('app_operation_index', [], Response::HTTP_SEE_OTHER);
+    //     }
+
+    //     return $this->render('operation/new.html.twig', [
+    //         'operation' => $operation,
+    //         'form' => $form,
+    //     ]);
+    // }
+
+    #[Route('/show/{id}', name: 'app_operation_show', methods: ['GET'])]
+>>>>>>> 19aa47bc776bd5f491de70c2767df2a188d520a5
     public function show(Operation $operation): Response
 
     {
@@ -64,7 +88,7 @@ class OperationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_operation_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'app_operation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Operation $operation, EntityManagerInterface $entityManager): Response
 
     {
