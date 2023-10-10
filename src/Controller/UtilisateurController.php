@@ -34,15 +34,15 @@ class UtilisateurController extends AbstractController
 
         $utilisateur = $utilisateurRepository->find($id);
 
-        $form = $this->createForm(UtilisateurType::class, $utilisateur);
-        $form->handleRequest($request);
+        $formEdit = $this->createForm(UtilisateurType::class, $utilisateur);
+        $formEdit->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formEdit->isSubmitted() && $formEdit->isValid()) {
 
             $utilisateur->setPassword(
                 $userPasswordHasher->hashPassword(
                     $utilisateur,
-                    $form->get('plainPassword')->getData()
+                    $formEdit->get('plainPassword')->getData()
                     )
                 );
             $entityManager->flush();
@@ -52,7 +52,7 @@ class UtilisateurController extends AbstractController
 
         return $this->renderForm('utilisateur/edit.html.twig', [
             'utilisateur' => $utilisateur,
-            'form' => $form,
+            'formEdit' => $formEdit,
         ]);
     }
 

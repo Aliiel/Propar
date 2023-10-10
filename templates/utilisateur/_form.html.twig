@@ -1,4 +1,17 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{# {{ form_start(form) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.prenom) }}
+
+    {% if app.user.getRoles()[0] == 'EXPERT' %}
+    {{ form_row(form.roles) }}
+
+    {% endif %}
+
+     <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+
+   
+ #}
