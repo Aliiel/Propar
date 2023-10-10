@@ -1,14 +1,19 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Facture</title>
+</head>
+<body>
+    <h1>Facture pour l'opération n°{{ operation.id }}</h1>
+    <h2>Informations de l'opération :</h2>
+    <p>Date de l'opération : {{ dateOperation|date('d-m-Y') }}</p>
+    <p>Prestation : {{ typeOperation }}</p>
 
-{% block title %}Facture{% endblock %}
+    <h2>Informations Client :</h2>
+    <p>Nom : {{ nomClient }}</p>
+    <p>Prénom : {{ prenomClient }} </p>
+    <p>Adresse : {{ adresseClient }}</p>
+    <p>E-mail : {{ emailClient }}</p>
 
-{% block body %}
-    {% include "header/_header.html.twig" %}
-
-    <h1>Facture de l'opération n° {{ operation.id }}</h1>
-
-    <p>Nom du client : {{ client.nom }} {{ client.prenom }}</p>
-    <p>Adresse du client : {{ client.Adresse }}</p>
-    <p>Type d'opération : {{ operation.type }}
-
-{% endblock %}
+</body>
+</html>
