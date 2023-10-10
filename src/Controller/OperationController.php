@@ -20,27 +20,7 @@ class OperationController extends AbstractController
 
 {
     #[Route('/{id}', name: 'app_operation_show', methods: ['GET'])]
-    // #[Route('/new', name: 'app_operation_new', methods: ['GET', 'POST'])]
-    // public function new(Request $request, EntityManagerInterface $entityManager): Response
-    // {
-    //     $operation = new Operation();
-    //     $form = $this->createForm(OperationType::class, $operation);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $entityManager->persist($operation);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('app_operation_index', [], Response::HTTP_SEE_OTHER);
-    //     }
-
-    //     return $this->render('operation/new.html.twig', [
-    //         'operation' => $operation,
-    //         'form' => $form,
-    //     ]);
-    // }
-
-    #[Route('/show/{id}', name: 'app_operation_show', methods: ['GET'])]
+   
     public function show(Operation $operation): Response
 
     {

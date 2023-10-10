@@ -8,7 +8,7 @@
 
 
 {% block body %} 
-
+{% include "header/_header.html.twig" %}
 
 
 {% if app.user.getRoles()[0] == "EXPERT" %}
@@ -64,7 +64,7 @@
 
     <div class="onglet">
       <div>
-        <a href=""><div class="icone_nav">
+        <a href="{{path('app_liste_operation')}}"><div class="icone_nav">
           <img
             src="{{ asset('image/verifier.png') }}"
             alt="Logo operations terminées"

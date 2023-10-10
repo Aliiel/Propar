@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ListeOperationController!{% endblock %}
+
+{% block body %}
+{% include "header/_header.html.twig" %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Liste de vos Operations ! ✅</h1>
+<ul>
+        {% for item in bilan %}
+            <li>
+                <strong>Opération ID:</strong> {{ item.operation.id }}<br>
+                <strong>Type:</strong> {{ item.operation.type }}<br>
+                <strong>État:</strong> {{ item.operation.etat }}<br>
+                <strong>Utilisateur ID:</strong> {{ item.utilisateur.id }}<br>
+                <strong>Nom:</strong> {{ item.utilisateur.nom }}<br>
+                <strong>Prénom:</strong> {{ item.utilisateur.prenom }}<br>
+                <strong>Rôles:</strong> {{ item.utilisateur.roles|join(', ') }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+{% endblock %}
+

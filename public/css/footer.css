@@ -1,0 +1,45 @@
+/* public/css/footer.css */
+
+/* Style de base du footer */
+footer {
+    background-color: #F8F4D7;
+    color: #060603;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Style des liens du footer */
+footer a {
+    color: #0c0b06;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+/* Style du pied de page */
+footer p {
+    margin-bottom: 10px;
+}
+
+/* Style de la liste des liens */
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+/* Style pour les petits écrans */
+@media (max-width: 768px) {
+    footer ul {
+        display: block;
+        text-align: center;
+    }
+
+    footer ul li {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+}

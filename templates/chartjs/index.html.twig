@@ -19,11 +19,7 @@
     <div class="total-wrapper">
         <p class="total-text">Somme totale : {{ resultss }} €</p>
     </div>
-    <ul>
-        {% for result in results %}
-            <li>Date : {{ result['date_realisation']|date('Y-m-d') }}, chiffre d'affaire : {{ result['total'] }} €</li>
-        {% endfor %}
-    </ul>
+    
 
     <div class="canva">
         <canvas id="myChart"></canvas>
@@ -39,25 +35,55 @@
         <p>Aucun chiffre d'affaires calculé pour les dates sélectionnées.</p>
     {% endif %}
 </div>
+<form method="GET" action="{{ path('app_chiffre_affaires') }}">
+    <label for="dateDebut">Date de début:</label>
+    <input type="date" id="dateDebut" name="dateDebut">
+    
+    <label for="dateFin">Date de fin:</label>
+    <input type="date" id="dateFin" name="dateFin">
+
+    <button type="submit" class="btn btn-primary">Filtrer</button>
+</form>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+
+// Regrouper les prestations en fonction de leur taille (petite, moyenne, grosse)
+    const petitsPrestations = [];
+    const moyennesPrestations = [];
+    const grossesPrestations = [];
+
+    {% for result in results %}
+        {% if result['total'] <= 1000 %}
+            petitsPrestations.push({ date: "{{ result['date_realisation']|date('Y-m-d') }}", total: {{ result['total'] }} });
+        {% elseif result['total'] <= 2500 %}
+            moyennesPrestations.push({ date: "{{ result['date_realisation']|date('Y-m-d') }}", total: {{ result['total'] }} });
+        {% else %}
+            grossesPrestations.push({ date: "{{ result['date_realisation']|date('Y-m-d') }}", total: {{ result['total'] }} });
+        {% endif %}
+    {% endfor %}
+
+    // Calculer le chiffre d'affaires pour chaque groupe
+    const chiffreAffairesPetits = petitsPrestations.reduce((total, prest) => total + prest.total, 0);
+    const chiffreAffairesMoyennes = moyennesPrestations.reduce((total, prest) => total + prest.total, 0);
+    const chiffreAffairesGrosses = grossesPrestations.reduce((total, prest) => total + prest.total, 0);
+
+    // Définir les couleurs pour chaque groupe
+    const backgroundColors = [
+        'rgb(255, 99, 132)', // Couleur pour les petites prestations
+        'rgb(75, 192, 192)', // Couleur pour les moyennes prestations
+        'rgb(255, 205, 86)'  // Couleur pour les grosses prestations
+    ];
+
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: [{% for result in results %}'{{ result['date_realisation']|date('Y-m-d') }}',{% endfor %}],
+            labels: ['Petite Prestation', 'Moyenne Prestation', 'Grosse Prestation'],
             datasets: [{
-                label: '# of Votes',
-                data: [{% for result in results %}{{ result['total'] }},{% endfor %}],
-                borderWidth: 1,
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(75, 192, 192)',
-                    'rgb(255, 205, 86)'
-                    // Ajoutez d'autres couleurs d'arrière-plan au besoin
-                ]
+                data: [chiffreAffairesPetits, chiffreAffairesMoyennes, chiffreAffairesGrosses],
+                backgroundColor: backgroundColors
             }]
         },
         options: {
@@ -69,5 +95,7 @@
         }
     });
 </script>
+
+
 
 {% endblock %}

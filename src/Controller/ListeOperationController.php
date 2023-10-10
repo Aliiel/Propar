@@ -2,39 +2,31 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Gerer;
-use App\Entity\Operation;
-use App\Repository\GererRepository;
 use App\Repository\UtilisateurRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
-class AccueilController extends AbstractController
+class ListeOperationController extends AbstractController
 {
-    #[Route('/', name: 'app_accueil')]
-    public function bilan(GererRepository $gererRepository, UtilisateurRepository $utilisateurRepository): Response
+    #[Route('/liste/operation', name: 'app_liste_operation')]
+    public function index(Gerer $gerer, UtilisateurRepository $utilisateurRepository): Response
     {
-
-        $experts = $utilisateurRepository->findBy(['roles' => 'EXPERT']);
-        $seniors = $utilisateurRepository->findBy(['roles' => 'SENIOR']);
-        $apprentis = $utilisateurRepository->findBy(['roles' => 'APPRENTI']);
-        
-        // Récupérez tous les enregistrements de Gerer
-        $gerers = $gererRepository->findAll();
+            // Récupérez tous les enregistrements de Gerer
+        $gerers = $gerer->getId();
 
         // Créez un tableau pour stocker les informations complètes
         $bilan = [];
 
         // Parcourez les enregistrements de Gerer
-        foreach ($gerers as $gerer) {
+        foreach ($gerer as $gerers) {
             // Obtenez l'objet Operation associé
-            $operation = $gerer->getOperationKey();
+            $operation = $gerers->getOperationKey();
 
             // Obtenez l'objet Utilisateur associé
-            $utilisateur = $gerer->getUtilisateurKey();
+            $utilisateur = $gerers->getUtilisateurKey();
 
             // Vérifiez si l'opération et l'utilisateur existent
             if ($operation && $utilisateur) {
@@ -63,14 +55,9 @@ class AccueilController extends AbstractController
         });
 
 
-        // Passez le tableau $bilan à la vue pour l'affichage
-        return $this->render('accueil/index.html.twig', [
+
+        return $this->render('liste_operation/index.html.twig', [
             'bilan' => $bilan,
-            'experts' => $experts,
-            'seniors' => $seniors,
-            'apprentis' => $apprentis, 
         ]);
     }
 }
-
-
