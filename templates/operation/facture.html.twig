@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture{% endblock %}
+
+{% block body %}
+    {% include "header/_header.html.twig" %}
+
+    <h1>Facture de l'opération n° {{ operation.id }}</h1>
+
+    <p>Nom du client : {{ client.nom }} {{ client.prenom }}</p>
+    <p>Adresse du client : {{ client.Adresse }}</p>
+    <p>Type d'opération : {{ operation.type }}
+
+{% endblock %}

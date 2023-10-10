@@ -7,20 +7,34 @@ use App\Entity\Client;
 use App\Entity\Gerer;
 use App\Entity\Utilisateur;
 use App\Form\OperationType;
+use App\Controller\PdfGeneratorController;
 use App\Repository\GererRepository;
 use App\Repository\OperationRepository;
 use App\Repository\UtilisateurRepository;
+use Doctrine\DBAL\Driver\Mysqli\Initializer\Options as InitializerOptions;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 #[Route('/operation')]
 
 class OperationController extends AbstractController
 
 {
+    private $pdfGeneratorController;
+
+    public function __construct(PdfGeneratorController $pdfGeneratorController)
+    {
+        $this->pdfGeneratorController = $pdfGeneratorController;
+    }
+
+
     #[Route('/{id}', name: 'app_operation_show', methods: ['GET'])]
     public function show(Operation $operation): Response
 
@@ -86,8 +100,11 @@ class OperationController extends AbstractController
         ]);
     }
 
+    
+
     #[Route('/{id}/closed', name: 'app_operation_closed', methods: ['GET'])]
-    public function closed(Operation $operation, EntityManagerInterface $entityManager): Response
+    
+    public function closed(Operation $operation, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
 
     {
 
@@ -95,14 +112,23 @@ class OperationController extends AbstractController
         $entityManager->persist($operation);
         $entityManager->flush();
 
-        // $pdf = $this->generateInvoicePdf($operation);
+        $pdfFilePath = $this->pdfGeneratorController->generateInvoicePdf($operation);
 
-        // $this->sendInvoiceEmail($operation->getClient(), $pdf, $mailer);
+        $email = (new Email())
+            ->from('no-reply@propar.com')
+            ->to($operation->getClient()->getEmail())
+            ->subject('Time for Symfony Mailer!')
+            ->text('Votre opération de nettoyage vient d\'être terminée ! Merci de l\'avoir effectué auprès de nos services. Vous pouvez trouver ci-joint la facture récapitulative de notre prestation.')
+            ->attachFromPath($pdfFilePath, 'facture.pdf', 'application/pdf');
 
+        $mailer->send($email);
+
+        unlink($pdfFilePath);
 
 
         return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
     }   
+   
 
 
     #[Route('/{id}', name: 'app_operation_delete', methods: ['POST'])]
@@ -173,3 +199,13 @@ class OperationController extends AbstractController
         ]);
     }
 }
+
+
+
+// public function generateInvoicePdf(Operation $operation)
+// {
+//     // Créez une instance de Dompdf
+//    
+
+// }
+
