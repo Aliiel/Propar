@@ -68,7 +68,7 @@ class OperationController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_operation_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Operation $operation, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Operation $operation, EntityManagerInterface $entityManager, int $id, UtilisateurRepository $utilisateurRepository): Response
 
     {
         $form = $this->createForm(OperationType::class, $operation);
@@ -76,20 +76,26 @@ class OperationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            
+
 
             return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
         }
+        $utilisateurs = $utilisateurRepository->findAll();
+        // ajouter une liste ici des utlisateurs avec un bouton 'modifier' pour utiliser setUtilisateurKey() et modifier la ligne Gerer de l'opération avec l'id de l'URL
 
         return $this->render('operation/edit.html.twig', [
             'operation' => $operation,
+            'utilisateurs' => $utilisateurs,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}/closed', name: 'app_operation_closed', methods: ['GET'])]
-    public function closed(Operation $operation, EntityManagerInterface $entityManager): Response
+    public function closed(Operation $operation, EntityManagerInterface $entityManager, ): Response
 
     {
+
 
         $operation->setEtat(2);
         $entityManager->persist($operation);
@@ -104,6 +110,38 @@ class OperationController extends AbstractController
         return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
     }   
 
+    #[Route('/{id}/changed', name: 'app_id_changed', methods: ['POST'])]
+public function changed(
+    Request $request,
+    Operation $operation,
+    EntityManagerInterface $entityManager,
+    GererRepository $gererRepository
+): Response {
+    // Récupérez l'ID de l'utilisateur sélectionné depuis le formulaire
+    $nouvelUtilisateurId = $request->request->get('utilisateur'); // Assure-toi que le nom correspond à l'input de la liste déroulante
+
+    // Récupérez l'entité Utilisateur correspondant à cet ID
+    $utilisateur = $entityManager->getRepository(Utilisateur::class)->find($nouvelUtilisateurId);
+
+    if (!$utilisateur) {
+        throw $this->createNotFoundException('Utilisateur non trouvé pour cet ID');
+    }
+
+    // Récupérez la relation Gerer associée à cette opération
+    $gerer = $gererRepository->findOneBy(['operationKey' => $operation]);
+
+    if (!$gerer) {
+        throw $this->createNotFoundException('Relation Gerer non trouvée pour cette opération');
+    }
+
+    // Mettez à jour la relation utilisateur_key de l'entité Gerer avec l'entité Utilisateur
+    $gerer->setUtilisateurKey($utilisateur);
+    $entityManager->flush();
+
+    return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
+}
+
+    
 
     #[Route('/{id}', name: 'app_operation_delete', methods: ['POST'])]
     public function delete(Operation $operation, Gerer $gerer, EntityManagerInterface $entityManager): Response
@@ -165,6 +203,7 @@ class OperationController extends AbstractController
                 $operations[] = $operation;
             }
         }
+            
     
         return $this->render('operation/myoperation.html.twig', [
             'operations' => $operations,
@@ -172,4 +211,6 @@ class OperationController extends AbstractController
             'typeOperation' => $typeOperation,
         ]);
     }
+    
+    
 }

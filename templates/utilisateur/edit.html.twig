@@ -16,6 +16,7 @@
     <section>
    <img src="{{asset('image/avatar.png')}}" alt="avatar" width="50%" border-radius="10px">
 <div class="main_form">   
+
     {{ include('utilisateur/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
     {% if app.user.getRoles()[0] == 'EXPERT' %}

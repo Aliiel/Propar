@@ -17,6 +17,20 @@
 
     {{ include('operation/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
+    <form method="post" action="{{ path('app_id_changed', {'id': operation.id}) }}">
+    <label for="utilisateur">Sélectionnez un utilisateur :</label>
+    <select id="utilisateur" name="utilisateur">
+        {% for utilisateur in utilisateurs %}
+            <option value="{{ utilisateur.id }}">{{ utilisateur.nom }} {{ utilisateur.prenom }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Modifier</button>
+</form>
+
     <a href="{{ path('app_accueil') }}">Retour à la liste</a>
+
+
+
 
 {% endblock %}
