@@ -109,6 +109,21 @@ form {
   width: 100%; 
 }
 
+
+.adresse-item{
+  background-color: #f5f5f5;
+  color: black;
+  transition: ease-in-out 0.4s;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 2%;
+}
+.adresse-item:hover{
+  background-color:#426950;
+  color: white;
+  cursor: pointer;
+}
+
 /* Styles pour le bouton "Enregistrer" */
 .btn {
   background-color: #F8F4D7;

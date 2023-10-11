@@ -10,6 +10,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Entity\Utilisateur;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 
 

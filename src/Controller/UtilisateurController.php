@@ -29,7 +29,7 @@ class UtilisateurController extends AbstractController
 
 
     #[Route('/{id}/edit', name: 'app_utilisateur_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, $id, UtilisateurRepository $utilisateurRepository, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, $id, UtilisateurRepository $utilisateurRepository, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
 
         $utilisateur = $utilisateurRepository->find($id);
@@ -38,12 +38,19 @@ class UtilisateurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $utilisateur->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $utilisateur,
+                    $form->get('plainPassword')->getData()
+                    )
+                );
             $entityManager->flush();
 
             return $this->redirectToRoute('app_liste_utilisateur', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('utilisateur/edit.html.twig', [
+        return $this->render('utilisateur/edit.html.twig', [
             'utilisateur' => $utilisateur,
             'form' => $form,
         ]);

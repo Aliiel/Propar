@@ -36,6 +36,32 @@ class AccueilController extends AbstractController
             // Obtenez l'objet Utilisateur associé
             $utilisateur = $gerer->getUtilisateurKey();
 
+            $etatOperation = $operation->getEtat();
+
+            $typeOperation = $operation->getType();
+    
+            if ($typeOperation == 1000) {
+    
+                $typeOperation = "Petite opération - Coût : 1 000 €";
+    
+            } elseif ($typeOperation == 2500) {
+    
+                $typeOperation = "Moyenne opération - Coût : 2 500 €";
+    
+            } else {
+    
+                $typeOperation = "Grosse opération - Coût : 5 000 €";
+            }
+    
+            if ($etatOperation == 1) {
+    
+                $etatOperation = "En cours";
+    
+            } else {
+    
+                $etatOperation = "Terminée";
+            }
+
             // Vérifiez si l'opération et l'utilisateur existent
             if ($operation && $utilisateur) {
                 // Extrayez les informations nécessaires
@@ -68,7 +94,9 @@ class AccueilController extends AbstractController
             'bilan' => $bilan,
             'experts' => $experts,
             'seniors' => $seniors,
-            'apprentis' => $apprentis, 
+            'apprentis' => $apprentis,
+            'etatOperation' => $etatOperation,
+            'typeOperation' => $typeOperation,
         ]);
     }
 }
