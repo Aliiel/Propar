@@ -122,6 +122,12 @@
   
   /* Styles pour le bouton "Enregistrer" */
   .btn {
+    color: white;
+    font-weight: 30px;
+    border-radius: 50px;
+    background: linear-gradient(145deg, #80be69, #6ca058);
+    box-shadow:  20px 20px 60px #669753,
+             0px 0px 10px #8acd71;
     font-family: 'Poppins Light';
     background-color: #F8F4D7;
     border: none;

@@ -13,7 +13,7 @@
 
 {% include "header/_header.html.twig" %}
 
-
+<main>
     <h1>Operation n° {{ operation.id }}</h1>
 
     <table class="table">
@@ -36,13 +36,14 @@
             </tr>
         </tbody>
     </table>
+<div id="navigation">
+    <a href="{{ path('app_accueil') }}"><button class="btn retour">Retour à la liste</button></a>
 
-    <a href="{{ path('app_accueil') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_operation_edit', {'id': operation.id}) }}">Modifier l'opération</a>
+    <a href="{{ path('app_operation_edit', {'id': operation.id}) }}"><button class="btn modif">Modifier l'opération</button></a>
 
     {% if etatOperation == "En cours" %}
-    <a href="{{ path('app_operation_closed', {'id': operation.id}) }}">Terminer l'opération</a>
+    <a href="{{ path('app_operation_closed', {'id': operation.id}) }}"><button class="btn valider">Terminer l'opération</button></a>
     {% endif %}
-
+</div>
+</main>
 {% endblock %}

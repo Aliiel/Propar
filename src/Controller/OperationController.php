@@ -211,13 +211,13 @@ public function changed(
                 $typeOperation = "Grosse opération - Coût : 5 000 €";
             }
     
-            if ($etatOperation === 1) {
+            if ($etatOperation == 1) {
     
-                $etatOperation = "En cours";
+                $etatOperation = "Terminée";
     
             } else {
     
-                $etatOperation = "Terminée";
+                $etatOperation = "En cours";
             }
 
         // Récupérez toutes les relations Gerer liées à cet utilisateur

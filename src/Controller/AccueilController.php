@@ -15,7 +15,7 @@ class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function bilan(GererRepository $gererRepository, UtilisateurRepository $utilisateurRepository): Response
     {
-
+        
         $experts = $utilisateurRepository->findBy(['roles' => 'EXPERT']);
         $seniors = $utilisateurRepository->findBy(['roles' => 'SENIOR']);
         $apprentis = $utilisateurRepository->findBy(['roles' => 'APPRENTI']);

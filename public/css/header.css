@@ -12,7 +12,10 @@
 }
 .head{
     display: flex;
-    background-color: #F8F4D7;
+    border-radius: 0px 0px 62px 62px;
+background: #F8F4D7;
+box-shadow:  13px 13px 71px #d3cfb7,
+             -13px -13px 71px #fffff7;
     justify-content: space-between;
     align-items: center;
 }
@@ -24,28 +27,35 @@
     justify-content: flex-start;
     flex-direction: row-reverse;
 }
+.element2_head > *{
+  margin-right: 5%;
+}
 
 
 .button_auth{
     font-family: 'Poppins Light';
-    background-color: #011C27;
+    border-radius: 97px;
+    background: #78B262;
     border: none;
-    border-radius: 10px;
     padding: 10px;
     text-align: center;
     transition: ease-in-out 0.4s;
-    color: white;
+    color: rgb(255, 255, 255);
     margin-right: 5%;
     cursor: pointer;
 }
+
 .button_auth:hover{
-   
+    box-shadow:  0px 0px 20px #6ca058,
+                 -0px -0px 20px #84c46c;
     background-color:#426950;
   
 }
 
 .button_auth.delete:hover{
     background-color: #ff0505;
+    box-shadow:  0px 0px 20px #1c1d1c,
+    -0px -0px 20px #000000;
 }
 
 #btn_offline{
