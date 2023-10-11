@@ -25,7 +25,7 @@
     <a href="{{ path('app_interface_utilisateur') }}"
       ><button class="button_auth">Mon espace</button></a
     >
-    <a href="#"><button class="button_auth">Mes opérations</button></a>
+    <a href="{{path('app_my_operation', {'id': app.user.id}) }}"><button class="button_auth">Mes opérations</button></a>
 
     {% else %}
     <div id="btn_offline">

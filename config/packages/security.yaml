@@ -35,6 +35,17 @@ security:
     # - { path: ^/admin, roles: 'EXPERT' }
     - { path: ^/profil, roles: 'ROLE_USER' }
     - { path: ^/ajout/operation, roles: 'ROLE_USER' }
+    - { path: ^/ajout/client, roles: 'ROLE_USER' }
+    - { path: ^/interface/utilisateur, roles: 'ROLE_USER' }
+    - { path: ^/mes_operations/\d+, roles: 'ROLE_USER' }
+    - { path: ^/operation, roles: 'ROLE_USER' }
+    - { path: ^/operation/\d+, roles: 'ROLE_USER' }
+    - { path: ^/operation/\d+/edit, roles: 'ROLE_USER' }
+    - { path: ^/utilisateur/\d+, roles: 'ROLE_USER' }
+    - { path: ^/utilisateur/\d+/edit, roles: 'ROLE_USER' }
+    - { path: ^/liste/utilisateur, roles: 'ROLE_USER' }
+    - { path: ^/chiffre/affaires, roles: 'ROLE_USER' }
+    - { path: ^/register, roles: 'ROLE_USER' }
     # - { path: ^/register, roles: 'EXPERT' }
 
 

@@ -18,6 +18,7 @@ class Gerer
     private ?Operation $operation_key = null;
 
     #[ORM\ManyToOne(inversedBy: 'gerers')]
+    
     private ?Utilisateur $utilisateur_key = null;
 
     public function getId(): ?int
