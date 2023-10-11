@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %} {# Ajouter des routes pour naviguer avec le menu
-#} {% block title %}Interface Utilisateur{% endblock %} {% block stylesheets %}
+#} {% block title %}Interface{% endblock %} {% block stylesheets %}
 
 <link rel="stylesheet" href="{{ asset('css/interfaceAdmin.css') }}" />
 
@@ -11,8 +11,8 @@
 {% include "header/_header.html.twig" %}
 
 
-{% if app.user.getRoles()[0] == 'EXPERT' %}
-
+{% if app.user.getRoles()[0] == "EXPERT" %}
+{% dump("EXPERT") %}
 <div class="example-wrapper">
   <h1>Interface Administrateur</h1>
 
@@ -64,7 +64,7 @@
 
     <div class="onglet">
       <div>
-        <a href=""><div class="icone_nav">
+        <a href="{{path('app_my_operation', {'id': app.user.id}) }}"><div class="icone_nav">
           <img
             src="{{ asset('image/verifier.png') }}"
             alt="Logo operations terminées"
@@ -135,7 +135,7 @@
 
     <div class="onglet">
       <div>
-        <a href=""><div class="icone_nav">
+        <a href="{{ path('app_my_operation', {'id': app.user.id}) }}"><div class="icone_nav">
           <img
             src="{{ asset('image/verifier.png') }}"
             alt="Logo operations terminées"

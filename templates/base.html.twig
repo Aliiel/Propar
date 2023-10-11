@@ -14,7 +14,13 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+        
+            <footer>
+        {% include 'footer/_footer.html.twig' %}
+    </footer>
+        
+        {% endblock %}
         
     </body>
 </html>
