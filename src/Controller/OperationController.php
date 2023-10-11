@@ -118,7 +118,16 @@ public function changed(
     GererRepository $gererRepository
 ): Response {
     // Récupérez l'ID de l'utilisateur sélectionné depuis le formulaire
-    $nouvelUtilisateurId = $request->request->get('utilisateur'); // Assure-toi que le nom correspond à l'input de la liste déroulante
+    $nouvelUtilisateurId = $request->request->get('utilisateur'); // Assurez-vous que le nom correspond à l'input de la liste déroulante
+    var_dump($nouvelUtilisateurId);
+    // Récupérez la relation Gerer associée à cette opération
+    $gerer = $gererRepository->findOneBy(['operation_key' => $operation]);
+
+    // Si la relation Gerer n'existe pas, créez-la
+    if (!$gerer) {
+        $gerer = new Gerer();
+        $gerer->setOperationKey($operation);
+    }
 
     // Récupérez l'entité Utilisateur correspondant à cet ID
     $utilisateur = $entityManager->getRepository(Utilisateur::class)->find($nouvelUtilisateurId);
@@ -127,15 +136,9 @@ public function changed(
         throw $this->createNotFoundException('Utilisateur non trouvé pour cet ID');
     }
 
-    // Récupérez la relation Gerer associée à cette opération
-    $gerer = $gererRepository->findOneBy(['operationKey' => $operation]);
-
-    if (!$gerer) {
-        throw $this->createNotFoundException('Relation Gerer non trouvée pour cette opération');
-    }
-
     // Mettez à jour la relation utilisateur_key de l'entité Gerer avec l'entité Utilisateur
     $gerer->setUtilisateurKey($utilisateur);
+    $entityManager->persist($gerer); // Vous devez peut-être ajouter cette ligne si vous créez un nouvel objet Gerer
     $entityManager->flush();
 
     return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
