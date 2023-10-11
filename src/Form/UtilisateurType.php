@@ -25,8 +25,7 @@ class UtilisateurType extends AbstractType
                 ],
                 'label' => 'Sélectionnez un rôle',
                 'placeholder' => 'Rôles',
-                'required' => false,
-                'mapped' => false,
+        
            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
