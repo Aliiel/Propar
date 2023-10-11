@@ -35,9 +35,11 @@ class OperationController extends AbstractController
 
 
     #[Route('/{id}', name: 'app_operation_show', methods: ['GET'])]
-    public function show(Operation $operation): Response
+    public function show(Operation $operation, Gerer $gerer): Response
 
     {
+
+        $utilisateurOperation = $operation->getUtilisateur();
 
         $client = $operation->getClient();
 
@@ -77,6 +79,7 @@ class OperationController extends AbstractController
             'prenomClient' => $prenomClient,
             'etatOperation' => $etatOperation,
             'typeOperation' => $typeOperation,
+            'utilisateurOperation' => $utilisateurOperation,
         ]);
     }
 
