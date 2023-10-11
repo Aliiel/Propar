@@ -97,7 +97,7 @@ class OperationController extends AbstractController
     }   
 
 
-    #[Route('/{id}', name: 'app_operation_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_operation_delete', methods: ['GET'])]
     public function delete(Operation $operation, Gerer $gerer, EntityManagerInterface $entityManager): Response
 
     {
