@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Entity\Utilisateur;
-use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 
 class ChiffreAffairesController extends AbstractController
@@ -56,54 +56,6 @@ class ChiffreAffairesController extends AbstractController
             'resultss' => $resultss,
             'utilisateurs' => $utilisateurs
         ]);
-    }
-
-    #[Route('/chiffre/affaires/filtre', name: 'app_chiffre_affaires_filtre', methods: ['GET'])]
-    public function chiffreAffairesFiltre(Request $request, EntityManagerInterface $em): JsonResponse
-    {
-        // Récupérez les paramètres de filtrage du formulaire
-        $annee = $request->query->get('date_realisation');
-        $typeOperation = $request->query->get('type');
-        $utilisateurId = $request->query->get('utilisateur');
-
-        // Construisez votre requête en fonction des filtres
-        $queryBuilder = $em->createQueryBuilder()
-            ->select('o.date_realisation', 'o.type AS total')
-            ->from('App\Entity\Operation', 'o')
-            ->where('o.etat');
-
-        if ($annee) {
-            $queryBuilder->andWhere('YEAR(o.date_realisation) = :annee')
-                ->setParameter('annee', $annee);
-        }
-
-        if ($typeOperation) {
-            $queryBuilder->andWhere('o.type = :typeOperation')
-                ->setParameter('typeOperation', $typeOperation);
-        }
-
-        if ($utilisateurId) {
-            $queryBuilder->join('o.utilisateur', 'u')
-                ->andWhere('u.id = :utilisateurId')
-                ->setParameter('utilisateurId', $utilisateurId);
-        }
-
-        $queryBuilder->orderBy('o.date_realisation');
-        $query = $queryBuilder->getQuery();
-
-        $results = $query->getResult();
-
-        // Construisez le tableau de résultats au format JSON
-        $data = [];
-        foreach ($results as $result) {
-            $data[] = [
-                'date_realisation' => $result['date_realisation']->format('Y-m-d'),
-                'total' => $result['total'],
-            ];
-        }
-
-        // Retournez les résultats filtrés sous forme de réponse JSON
-        return $this->json(['filtered_operations' => $data]);
     }
 }
 
