@@ -11,7 +11,6 @@ use App\Controller\PdfGeneratorController;
 use App\Repository\GererRepository;
 use App\Repository\OperationRepository;
 use App\Repository\UtilisateurRepository;
-use Doctrine\DBAL\Driver\Mysqli\Initializer\Options as InitializerOptions;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

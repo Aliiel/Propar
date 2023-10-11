@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Gerer;
 use App\Entity\Utilisateur;
 use App\Form\UtilisateurType;
 use App\Repository\UtilisateurRepository;
@@ -58,12 +59,16 @@ class UtilisateurController extends AbstractController
 
 
 
-    #[Route('/{id}', name: 'app_utilisateur_delete', methods: ['POST'])]
-    public function delete(Request $request, Utilisateur $utilisateur, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}/closed', name: 'app_utilisateur_delete', methods: ['DELETE'])]
+    public function delete(Utilisateur $utilisateur, EntityManagerInterface $entityManager): Response
     {
-        $entityManager->remove($utilisateur);
-        $entityManager->flush();
+
+        $gererRepository = $entityManager->getRepository(Gerer::class);
+        $relatedGererRecords = $gererRepository->findBy(['utilisateur_key' => $utilisateur]);
+        foreach ($relatedGererRecords as $relatedGererRecord) {
+        $entityManager->remove($relatedGererRecord);
+        }
       
-        return $this->redirectToRoute('app_liste_utilisateur', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
     }
 }
