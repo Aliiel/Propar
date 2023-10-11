@@ -135,41 +135,7 @@ class OperationController extends AbstractController
         return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
     }   
 
-    #[Route('/{id}/changed', name: 'app_id_changed', methods: ['POST'])]
-public function changed(
-    Request $request,
-    Operation $operation,
-    EntityManagerInterface $entityManager,
-    GererRepository $gererRepository
-): Response {
-    // Récupérez l'ID de l'utilisateur sélectionné depuis le formulaire
-    $nouvelUtilisateurId = $request->request->get('utilisateur'); // Assurez-vous que le nom correspond à l'input de la liste déroulante
-    var_dump($nouvelUtilisateurId);
-    // Récupérez la relation Gerer associée à cette opération
-    $gerer = $gererRepository->findOneBy(['operation_key' => $operation]);
-
-    // Si la relation Gerer n'existe pas, créez-la
-    if (!$gerer) {
-        $gerer = new Gerer();
-        $gerer->setOperationKey($operation);
-    }
-
-    // Récupérez l'entité Utilisateur correspondant à cet ID
-    $utilisateur = $entityManager->getRepository(Utilisateur::class)->find($nouvelUtilisateurId);
-
-    if (!$utilisateur) {
-        throw $this->createNotFoundException('Utilisateur non trouvé pour cet ID');
-    }
-
-    // Mettez à jour la relation utilisateur_key de l'entité Gerer avec l'entité Utilisateur
-    $gerer->setUtilisateurKey($utilisateur);
-    $entityManager->persist($gerer); // Vous devez peut-être ajouter cette ligne si vous créez un nouvel objet Gerer
-    $entityManager->flush();
-
-        return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
-    }   
-   
-
+ 
     #[Route('/{id}/changed', name: 'app_id_changed', methods: ['POST'])]
 public function changed(
     Request $request,
