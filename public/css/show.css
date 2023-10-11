@@ -139,6 +139,13 @@ tr{
   h1 {
     font-family: "Poppins Medium";
     text-align: center;
+    margin-top: 10%;
+    margin-bottom: 2%;
+    border-radius: 89px;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    padding: 20px;
+    box-shadow:  27px 27px 53px #b3b3b3,
+             -27px -27px 53px #ffffff;
   }
 
 
