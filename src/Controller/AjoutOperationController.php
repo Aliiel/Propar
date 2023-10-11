@@ -98,7 +98,7 @@ class AjoutOperationController extends AbstractController
                $em->flush();
                $this->addFlash('success', 'Opération ajoutée avec succès');
 
-               return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
+            //    return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
         }
 
 

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "jquery": "^3.7.1",
     "symfony": "^0.0.1"
   },
   "devDependencies": {

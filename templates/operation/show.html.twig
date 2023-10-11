@@ -41,8 +41,8 @@
 
     <a href="{{ path('app_operation_edit', {'id': operation.id}) }}">Modifier l'opération</a>
 
+    {% if etatOperation == "En cours" %}
     <a href="{{ path('app_operation_closed', {'id': operation.id}) }}">Terminer l'opération</a>
-
-    <a href="{{ path('app_operation_delete', {'id': operation.id}) }}">Supprimer l'opération</a>
+    {% endif %}
 
 {% endblock %}
