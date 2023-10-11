@@ -37,6 +37,7 @@ security:
     - { path: ^/liste/utilisateur, roles: 'ROLE_USER' }
     - { path: ^/operation/show, roles: 'ROLE_USER' }
     - { path: ^/operation/edit, roles: 'ROLE_USER' }
+    - { path: ^/operations, roles: ROLE_USER }
 
     # - { path: ^/register, roles: 'EXPERT' }
 
