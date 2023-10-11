@@ -21,8 +21,22 @@
       <h3>{{ role }}</h3>
       {% endfor %}
       <h4>Opération n° {{ item.operation.id }}</h4>
-      <p>Type: {{ typeOperation }}</p>
-      <p>État: {{ etatOperation }}</p>
+<p>Type:
+    {% if item.operation.type == 1000 %}
+        Petite opération - Coût : 1 000 €
+    {% elseif item.operation.type == 2500 %}
+        Moyenne opération - Coût : 2 500 €
+    {% else %}
+        Grosse opération - Coût : 5 000 €
+    {% endif %}
+</p>
+<p>État:
+    {% if item.operation.etat == 1 %}
+        En cours
+    {% else %}
+        Terminée
+    {% endif %}
+</p>
       <!-- Ajoutez d'autres propriétés de l'opération ici -->
 
       <h4>Utilisateur n° {{ item.utilisateur.id }}</h4>
@@ -45,8 +59,23 @@
     <h3>{{ role }}</h3>
     {% endfor %}
     <h4>Opération n° {{ item.operation.id }}</h4>
-    <p>Type: {{ typeOperation }}</p>
-    <p>État: {{ etatOperation }}</p>
+    <h4>Opération n° {{ item.operation.id }}</h4>
+<p>Type:
+    {% if item.operation.type == 1000 %}
+        Petite opération - Coût : 1 000 €
+    {% elseif item.operation.type == 2500 %}
+        Moyenne opération - Coût : 2 500 €
+    {% else %}
+        Grosse opération - Coût : 5 000 €
+    {% endif %}
+</p>
+<p>État:
+    {% if item.operation.etat == 1 %}
+        En cours
+    {% else %}
+        Terminée
+    {% endif %}
+</p>
     <!-- Ajoutez d'autres propriétés de l'opération ici -->
 
     <h4>Utilisateur n° {{ item.utilisateur.id }}</h4>
@@ -69,8 +98,23 @@
     <h3>{{ role }}</h3>
     {% endfor %}
     <h4>Opération n° {{ item.operation.id }}</h4>
-    <p>Type: {{ typeOperation }}</p>
-    <p>État: {{ etatOperation }}</p>
+   <h4>Opération n° {{ item.operation.id }}</h4>
+<p>Type:
+    {% if item.operation.type == 1000 %}
+        Petite opération - Coût : 1 000 €
+    {% elseif item.operation.type == 2500 %}
+        Moyenne opération - Coût : 2 500 €
+    {% else %}
+        Grosse opération - Coût : 5 000 €
+    {% endif %}
+</p>
+<p>État:
+    {% if item.operation.etat == 1 %}
+        En cours
+    {% else %}
+        Terminée
+    {% endif %}
+</p>
     <!-- Ajoutez d'autres propriétés de l'opération ici -->
 
     <h4>Utilisateur n° {{ item.utilisateur.id }}</h4>

@@ -119,18 +119,18 @@ class OperationController extends AbstractController
         $entityManager->persist($operation);
         $entityManager->flush();
 
-        $pdfFilePath = $this->pdfGeneratorController->generateInvoicePdf($operation);
+        // $pdfFilePath = $this->pdfGeneratorController->generateInvoicePdf($operation);
 
-        $email = (new Email())
-            ->from('no-reply@propar.com')
-            ->to($operation->getClient()->getEmail())
-            ->subject('Time for Symfony Mailer!')
-            ->text('Votre opération de nettoyage vient d\'être terminée ! Merci de l\'avoir effectué auprès de nos services. Vous pouvez trouver ci-joint la facture récapitulative de notre prestation.')
-            ->attachFromPath($pdfFilePath, 'facture.pdf', 'application/pdf');
+        // $email = (new Email())
+        //     ->from('no-reply@propar.com')
+        //     ->to($operation->getClient()->getEmail())
+        //     ->subject('Time for Symfony Mailer!')
+        //     ->text('Votre opération de nettoyage vient d\'être terminée ! Merci de l\'avoir effectué auprès de nos services. Vous pouvez trouver ci-joint la facture récapitulative de notre prestation.')
+        //     ->attachFromPath($pdfFilePath, 'facture.pdf', 'application/pdf');
 
-        $mailer->send($email);
+        // $mailer->send($email);
 
-        unlink($pdfFilePath);
+        // unlink($pdfFilePath);
 
 
         return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
@@ -192,57 +192,48 @@ public function changed(
 
 
     #[Route('/mes_operations/{id}', name: 'app_my_operation', methods: ['GET'])]
-    public function myOperation(int $id, EntityManagerInterface $entityManager, Operation $operation): Response
-    {
+public function myOperation(int $id, EntityManagerInterface $entityManager): Response
+{
+    // Récupérez toutes les relations Gerer liées à cet utilisateur
+    $gerers = $entityManager->getRepository(Gerer::class)->findBy(['utilisateur_key' => $id]);
+    
+    // Créez un tableau pour stocker les opérations liées à chaque relation Gerer
+    $operations = [];
+    $etatOperation = null;
+    $typeOperation = null;
 
-        $etatOperation = $operation->getEtat();
-
+    foreach ($gerers as $gerer) {
+        $operation = $gerer->getOperationKey();
+        if ($operation) {
+            $operations[] = $operation;
+            $etatOperation = $operation->getEtat();
             $typeOperation = $operation->getType();
-    
-            if ($typeOperation == 1000) {
-    
-                $typeOperation = "Petite opération - Coût : 1 000 €";
-    
-            } elseif ($typeOperation == 2500) {
-    
-                $typeOperation = "Moyenne opération - Coût : 2 500 €";
-    
-            } else {
-    
-                $typeOperation = "Grosse opération - Coût : 5 000 €";
-            }
-    
-            if ($etatOperation === 1) {
-    
-                $etatOperation = "En cours";
-    
-            } else {
-    
-                $etatOperation = "Terminée";
-            }
-
-        // Récupérez toutes les relations Gerer liées à cet utilisateur
-        $gerers = $entityManager->getRepository(Gerer::class)->findBy(['utilisateur_key' => $id]);
-        
-        // Créez un tableau pour stocker les opérations liées à chaque relation Gerer
-        $operations = [];
-    
-        foreach ($gerers as $gerer) {
-            $operation = $gerer->getOperationKey();
-            if ($operation) {
-                $operations[] = $operation;
-            }
         }
-            
-    
-        return $this->render('operation/myoperation.html.twig', [
-            'operations' => $operations,
-            'etatOperation' => $etatOperation,
-            'typeOperation' => $typeOperation,
-        ]);
     }
-    
-    
+
+    // Maintenant, vous avez l'état et le type de la première opération associée à cet utilisateur
+
+    if ($typeOperation == 1000) {
+        $typeOperation = "Petite opération - Coût : 1 000 €";
+    } elseif ($typeOperation == 2500) {
+        $typeOperation = "Moyenne opération - Coût : 2 500 €";
+    } else {
+        $typeOperation = "Grosse opération - Coût : 5 000 €";
+    }
+
+    if ($etatOperation == 1) {
+        $etatOperation = "En cours";
+    } else {
+        $etatOperation = "Terminée";
+    }
+
+    return $this->render('operation/myoperation.html.twig', [
+        'operations' => $operations,
+        'etatOperation' => $etatOperation,
+        'typeOperation' => $typeOperation,
+    ]);
+}
+
 }
 
 
