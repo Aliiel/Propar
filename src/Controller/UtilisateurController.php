@@ -48,7 +48,7 @@ class UtilisateurController extends AbstractController
                 );
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_liste_utilisateur', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_interface_utilisateur', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('utilisateur/edit.html.twig', [
@@ -59,15 +59,13 @@ class UtilisateurController extends AbstractController
 
 
 
-    #[Route('/{id}/closed', name: 'app_utilisateur_delete', methods: ['DELETE'])]
-    public function delete(Utilisateur $utilisateur, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}', name: 'app_utilisateur_delete', methods: ['POST'])]
+    public function delete(Request $request, $id, UtilisateurRepository $utilisateurRepository, EntityManagerInterface $entityManager): Response
     {
 
-        $gererRepository = $entityManager->getRepository(Gerer::class);
-        $relatedGererRecords = $gererRepository->findBy(['utilisateur_key' => $utilisateur]);
-        foreach ($relatedGererRecords as $relatedGererRecord) {
-        $entityManager->remove($relatedGererRecord);
-        }
+        $utilisateur = $utilisateurRepository->find($id);
+            $entityManager->remove($utilisateur);
+            $entityManager->flush();
       
         return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
     }

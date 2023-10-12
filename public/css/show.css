@@ -21,6 +21,9 @@ table {
 
 body {
   background-image: url(../image/fond\ accueil.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 main{
@@ -85,6 +88,7 @@ tr{
   justify-content: space-around;
   width: 60%;
   margin-top: 5%;
+  color: white;
 }
 
 .btn {
@@ -92,6 +96,17 @@ tr{
     width: 150px;
     background-color:#f8f4d7;
     color: black;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    margin: 2%;
+    transition: ease-in-out 0.4s;
+  }
+.btn.modif {
+    font-family: "Poppins Light";
+    width: 150px;
+    background-color:#78b262;
+    color: rgb(255, 255, 255);
     border-radius: 10px;
     border: none;
     padding: 10px;
@@ -113,6 +128,7 @@ tr{
 
   .delete {
     background-color: red;
+    color: white;
   }
 
   .liste{

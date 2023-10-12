@@ -19,6 +19,7 @@
 
 /* Styles du corps de la page */
 body {
+  font-family: 'Poppins Light';
   background-color: #78B262;
   font-family: Arial, sans-serif;
 }
@@ -126,6 +127,7 @@ form {
 
 /* Styles pour le bouton "Enregistrer" */
 .btn {
+  font-family: 'Poppins Light';
   background-color: #F8F4D7;
   border: none;
   border-radius: 10px;
@@ -133,6 +135,7 @@ form {
   text-align: center;
   cursor: pointer; 
   margin-top: 10px; /* Ajoute un espace en haut du bouton */
+  transition: ease-in-out 0.4s;
 }
 
 /* Styles pour le bouton "Enregistrer" au survol */

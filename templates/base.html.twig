@@ -3,10 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-      
+      <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('image/logo_couleur.png') }}" />
      
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('css/base.css') }}" />
         {% endblock %}
 
         {% block javascripts %}

@@ -6,19 +6,22 @@ use App\Entity\Gerer;
 use App\Entity\Operation;
 use App\Repository\GererRepository;
 use App\Repository\UtilisateurRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class AccueilController extends AbstractController
 {
     #[Route('/', name: 'app_accueil')]
     public function bilan(GererRepository $gererRepository, UtilisateurRepository $utilisateurRepository): Response
     {
-        
+
         $experts = $utilisateurRepository->findBy(['roles' => 'EXPERT']);
         $seniors = $utilisateurRepository->findBy(['roles' => 'SENIOR']);
         $apprentis = $utilisateurRepository->findBy(['roles' => 'APPRENTI']);
+        
         // Récupérez tous les enregistrements de Gerer
         $gerers = $gererRepository->findAll();
 
@@ -29,36 +32,10 @@ class AccueilController extends AbstractController
         foreach ($gerers as $gerer) {
             // Obtenez l'objet Operation associé
             $operation = $gerer->getOperationKey();
-
+        
             // Obtenez l'objet Utilisateur associé
             $utilisateur = $gerer->getUtilisateurKey();
-
-            $etatOperation = $operation->getEtat();
-
-            $typeOperation = $operation->getType();
-    
-            if ($typeOperation == 1000) {
-    
-                $typeOperation = "Petite opération - Coût : 1 000 €";
-    
-            } elseif ($typeOperation == 2500) {
-    
-                $typeOperation = "Moyenne opération - Coût : 2 500 €";
-    
-            } else {
-    
-                $typeOperation = "Grosse opération - Coût : 5 000 €";
-            }
-    
-            if ($etatOperation == 1) {
-    
-                $etatOperation = "En cours";
-    
-            } else {
-    
-                $etatOperation = "Terminée";
-            }
-
+        
             // Vérifiez si l'opération et l'utilisateur existent
             if ($operation && $utilisateur) {
                 // Extrayez les informations nécessaires
@@ -74,7 +51,6 @@ class AccueilController extends AbstractController
                         'nom' => $utilisateur->getNom(),
                         'prenom' => $utilisateur->getPrenom(),
                         'roles' => $utilisateur->getRoles(),
-
                         // Ajoutez d'autres propriétés de l'utilisateur au besoin
                     ],
                 ];
@@ -92,8 +68,6 @@ class AccueilController extends AbstractController
             'experts' => $experts,
             'seniors' => $seniors,
             'apprentis' => $apprentis,
-            'etatOperation' => $etatOperation,
-            'typeOperation' => $typeOperation,
         ]);
     }
 }

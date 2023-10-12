@@ -62,6 +62,7 @@ button{
     text-align: center;
     transition: ease-in-out 0.4s;
     color: white;
+    cursor: pointer;
 }
 button:hover{
     background-color: #78B262;
@@ -89,6 +90,13 @@ button:hover{
 }
 .card-body.apprenti{
     border: 8px solid #011C27;
+}
+
+.green-text {
+    color: green;
+}
+.orange-text {
+    color: rgb(250, 177, 5);
 }
 
 .card{
@@ -122,4 +130,15 @@ h5{
     padding: 10px;
     border-radius: 10px;
 }
+
+.btn.retour {
+    background-color: #f8f4d7;
+    color: black;
+    margin: 2%;
+  }
+  .btn.retour:hover {
+   color: black;
+   transform: scale(110%);
+    cursor: pointer;
+  }
 

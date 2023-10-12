@@ -1,9 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Facture</title>
-</head>
-<body>
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/facture.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <img src="{{ asset('image/logo.png') }}" alt="logo" width="150px"/>
+
     <h1>Facture pour l'opération n°{{ operation.id }}</h1>
     <h2>Informations de l'opération :</h2>
     <p>Date de l'opération : {{ dateOperation|date('d-m-Y') }}</p>
@@ -14,6 +19,4 @@
     <p>Prénom : {{ prenomClient }} </p>
     <p>Adresse : {{ adresseClient }}</p>
     <p>E-mail : {{ emailClient }}</p>
-
-</body>
-</html>
+{% endblock %}

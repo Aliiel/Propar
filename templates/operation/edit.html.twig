@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
 
-<link rel="stylesheet" href="{{ asset('css/show.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/edit_operation.css') }}" />
 
 {% endblock %}
 
@@ -17,19 +17,28 @@
 
     {{ include('operation/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-    <form method="post" action="{{ path('app_id_changed', {'id': operation.id}) }}">
-    <label for="utilisateur">Sélectionnez un utilisateur :</label>
+    {% if app.user.getRoles()[0] == 'EXPERT' %}
+    <form method="post" name="utilisateur" action="{{ path('app_id_changed', {'id': operation.id}) }}">
+<div id="utilisateur">
+    <label for="utilisateur">Changer d'utilisateur :</label>
     <select id="utilisateur" name="utilisateur">
         {% for utilisateur in utilisateurs %}
-            <option value="{{ utilisateur.id }}">{{ utilisateur.nom }} {{ utilisateur.prenom }}</option>
+            <option value="{{ utilisateur.id }}">
+            {{ utilisateur.nom }} 
+            {{ utilisateur.prenom }} 
+            {% for role in utilisateur.roles %}
+            <h3>{{ role }}</h3>
+            {% endfor %}
+            </option>
         {% endfor %}
     </select>
-
+</div>
     <button type="submit">Modifier</button>
 </form>
-
-    <a href="{{ path('app_accueil') }}">Retour à la liste</a>
-
+{% endif %}
+    <div class="retour">
+    <a href="{{ path('app_accueil') }}"><button class="btn retour">Retour à l'accueil'</button></a>
+    </div>
 
 
 

@@ -10,6 +10,12 @@
     font-family: 'Poppins Regular';
     src: url(../font/Poppins-Regular.ttf);
 }
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
 .head{
     display: flex;
     border-radius: 0px 0px 62px 62px;
@@ -41,7 +47,6 @@ box-shadow:  13px 13px 71px #d3cfb7,
     text-align: center;
     transition: ease-in-out 0.4s;
     color: rgb(255, 255, 255);
-    margin-right: 5%;
     cursor: pointer;
 }
 

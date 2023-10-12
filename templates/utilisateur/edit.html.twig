@@ -19,7 +19,9 @@
     {{ include('utilisateur/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
     {% if app.user.getRoles()[0] == 'EXPERT' %}
+
     {{ include('utilisateur/_delete_form.html.twig') }}
+    
     {% endif %}
     
 {% if app.user.getRoles()[0] == 'EXPERT' %}

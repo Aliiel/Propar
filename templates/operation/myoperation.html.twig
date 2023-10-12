@@ -10,27 +10,38 @@
     {% include "header/_header.html.twig" %}
 
     <h1>Mes opérations</h1>
-<div class="container">
-
- {% if operations|length == 0 %}
-        <h2>Aucune opération n'a été enregistrée pour votre compte.</h2>
-    {% else %}
-   
-        {% for operation in operations %} 
-    <div class="card">
-    <div class="card-body senior">
-            <h4>Opération n° {{ operation.id }}</h4>
-            <p>Type: {{ typeOperation }}</p>
-            <p>État: {{ etatOperation }}</p>
-              <a href="{{ path('app_operation_show', { 'id': operation.id }) }}"
-        ><button>Consulter</button></a>
+    <div class="container">
+        {% if operations|length == 0 %}
+            <h2>Aucune opération n'a été enregistrée pour votre compte.</h2>
+        {% else %}
+            {% for operation in operations %}
+                <div class="card">
+                    <div class="card-body senior">
+                        <h4>Opération n° {{ operation.id }}</h4>
+                        <p>Type:
+                            {% if operation.type == 1000 %}
+                                Petite opération - Coût : 1 000 €
+                            {% elseif operation.type == 2500 %}
+                                Moyenne opération - Coût : 2 500 €
+                            {% else %}
+                                Grosse opération - Coût : 5 000 €
+                            {% endif %}
+                        </p>
+                        <p>État:
+                            {% if operation.etat == 1 %}
+                                En cours
+                            {% else %}
+                                Terminée
+                            {% endif %}
+                        </p>
+                        <a href="{{ path('app_operation_show', { 'id': operation.id }) }}">
+                            <button>Consulter</button>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        
+    {% endif %}
+    <a href="{{ path('app_accueil') }}" ><button class='btn retour'>Retour accueil</button></a>
     </div>
-    </div>
-        {% endfor %}
-    
-</div>
-  {% endif %}
-    <a href="{{ path('app_accueil') }}">Retour à la liste</a>
-
-  
 {% endblock %}

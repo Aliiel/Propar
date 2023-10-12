@@ -19,14 +19,12 @@
         {% endfor %}
       </p>
       <div>
-        <a href="{{ path('app_utilisateur_show', { id: utilisateur.id }) }}"
-          ><button class="button consult">Consulter</button></a
-        >
+        <a href="{{ path('app_utilisateur_show', { 'id': utilisateur.id }) }}"
+          ><button class="button consult">Consulter</button></a>
 
         {% if app.user.getRoles()[0] == 'EXPERT' %}
-        <a href="{{ path('app_utilisateur_edit', { id: utilisateur.id }) }}"
-          ><button class="button modif">Modifier</button></a
-        > {% endif %}
+        <a href="{{ path('app_utilisateur_edit', { 'id': utilisateur.id }) }}"
+          ><button class="button modif">Modifier</button></a> {% endif %}
       </div>
 
       <!-- Ajoutez d'autres données d'opération si nécessaire -->
