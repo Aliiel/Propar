@@ -1,0 +1,176 @@
+@font-face {
+  font-family: "Poppins Light";
+  src: url(../font/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: "Poppins Medium";
+  src: url(../font/Poppins-Medium.ttf);
+}
+@font-face {
+  font-family: "Poppins Regular";
+  src: url(../font/Poppins-Regular.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url(../image/fond\ accueil.png);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+}
+
+table {
+  font-family: "Poppins Light";
+}
+
+.main_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#utilisateur {
+  font-family: "Poppins Regular";
+  font-size: 1.6em;
+  background-color: #f8f4d7;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+
+  text-align: left;
+  border: 5px solid #426950;
+  border-radius: 10px;
+  width: 400px;
+}
+
+#utilisateur div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* a {
+  text-decoration: none;
+  color: black;
+  font-family: "Poppins Medium";
+  background-color: #f8f4d7;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+a:hover {
+  border: 3px solid black;
+} */
+
+input {
+  font-family: "Poppins Light";
+  font-size: 1.1em;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  background-color: #78b262;
+}
+
+select {
+  background-color: #78b262;
+  font-family: "Poppins Light";
+  transition: ease-in-out 0.4s;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.btn {
+  font-family: "Poppins Light";
+  width: 150px;
+  background-color: #78b262;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  margin: 2%;
+  transition: ease-in-out 0.4s;
+}
+
+.liste{
+    background-color: #f8f4d7;
+    color: black;
+  }  
+
+.delete {
+  background-color: red;
+}
+
+.btn:hover {
+  transform: scale(110%);
+  cursor: pointer;
+}
+
+h1 {
+  font-family: "Poppins Medium";
+  text-align: center;
+}
+
+/* Partie SHOW */
+
+.main_consult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+td a {
+  background-color: #78b262;
+  padding: 5px;
+  border: 2px solid white;
+}
+.table {
+  font-family: "Poppins Regular";
+  font-size: 1.6em;
+  background-color: #f8f4d7;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  border: 5px solid #426950;
+  border-radius: 10px;
+  text-align: center;
+}
+tbody {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+th {
+  background-color: #011c27;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.btn_groupe {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin-left: 5%;
+}

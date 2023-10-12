@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #011C27;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+img {
+    max-width: 200px;
+    margin: 20px 0;
+}
+
+h1 {
+    font-size: 24px;
+    color: #426950;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #426950;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+/* Informations de l'opération */
+h2:first-of-type {
+    margin-top: 40px;
+}
+
+/* Informations Client */
+h2:last-of-type {
+    margin-bottom: 40px;
+}

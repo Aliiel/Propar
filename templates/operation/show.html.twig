@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{{ asset('css/show.css') }}" />
+
+{% endblock %}
+
+{% block title %}Operation{% endblock %}
+
+{% block body %}
+
+{% include "header/_header.html.twig" %}
+
+<main>
+    <h1>Operation n° {{ operation.id }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Etat de l'opération :</th>
+                <td>{{ etatOperation }}</td>
+            </tr>
+            <tr>
+                <th>Date de réalisation : </th>
+                <td>{{ operation.dateRealisation ? operation.dateRealisation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Client associé :</th>
+                <td>{{ nomClient }} {{ prenomClient }}</td>
+            </tr>
+             <tr>
+                <th>Type d'opération :</th>
+                <td>{{ typeOperation }}</td>
+            </tr>
+        </tbody>
+    </table>
+<div id="navigation">
+    <a href="{{ path('app_accueil') }}"><button class="btn retour">Retour à la liste</button></a>
+
+    <a href="{{ path('app_operation_edit', {'id': operation.id}) }}"><button class="btn modif">Modifier l'opération</button></a>
+
+    {% if etatOperation == "En cours" %}
+    <a href="{{ path('app_operation_closed', {'id': operation.id}) }}"><button class="btn valider">Terminer l'opération</button></a>
+    {% endif %}
+</div>
+</main>
+{% endblock %}

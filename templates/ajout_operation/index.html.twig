@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Ajout d'opérations{% endblock %}
+
+
+
+
+{% block stylessheets %} <link rel="stylesheet" href="{{ asset('css/creationForm.css') }}"> {% endblock %}
+
+
+{% block body %}
+
+{% include "header/_header.html.twig" %}
+
+{% block content %}
+    {# Affichez le formulaire ici #}
+<div class="main">
+    <div class="element1">
+    <h1>Création d'une demande d'opération</h1>
+        <img src="{{asset('image/photoform.jpg')}}" alt="photo homme menage" width="50%">
+    </div>
+    {% include "ajout_operation/_form.html.twig" %}
+    
+</div>
+
+    {# Affichez le message flash s'il existe #}
+    {% for type, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ type }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+
+
+{% endblock %}

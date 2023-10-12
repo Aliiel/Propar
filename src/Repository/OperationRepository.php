@@ -24,8 +24,27 @@ class OperationRepository extends ServiceEntityRepository
 //    /**
 //     * @return Operation[] Returns an array of Operation objects
 //     */
-//    public function findByExampleField($value): array
-//    {
+   public function findCompletedOperations()
+{
+    return $this->createQueryBuilder('o')
+        ->where('o.etat = :etat')
+        ->setParameter('etat', 2) // Assurez-vous que c'est le bon état
+        ->getQuery()
+        ->getResult();
+}
+
+
+
+   public function inProgressOperations()
+{
+    return $this->createQueryBuilder('o')
+        ->where('o.etat = :etat')
+        ->setParameter('etat', 1) // Assurez-vous que c'est le bon état
+        ->getQuery()
+        ->getResult();
+}
+
+
 //        return $this->createQueryBuilder('o')
 //            ->andWhere('o.exampleField = :val')
 //            ->setParameter('val', $value)

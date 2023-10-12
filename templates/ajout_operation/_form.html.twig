@@ -1,0 +1,26 @@
+
+{% block stylessheets %}<link rel="stylesheet" href="{{ asset('css/creationForm.css') }}"> {% endblock %}
+<section>
+
+    {% for label, messages in app.flashes(['success', 'danger']) %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<div class="formulaire">
+<div class="corpsForm">
+{{form_start(operationForm)}}
+<div class="div">{{form_row(operationForm.type)}}</div>
+{# <div class="div">{{form_row(operationForm.utilisateur)}}</div> #}
+<div class="div">{{form_row(operationForm.date_realisation)}}</div>
+{# <div class="div">{{form_row(operationForm.utilisateur)}}</div> #}
+<div class="div">{{form_row(operationForm.client)}}</div>
+<div class="btn_submit"><button type="submit" class='btn btn-primary'>Créer l'opération</button></div>
+<div class="btn_submit"><button type="submit" class='btn btn-primary'><a href="{{ path('app_ajout_client') }}">Ajouter un nouveau client</button></a></div>
+{{form_end(operationForm)}}
+</div>
+</div>
+</section>

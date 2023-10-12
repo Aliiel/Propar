@@ -1,0 +1,239 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/accueil.css') }}" />
+{% endblock %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %} 
+    {% include "header/_header.html.twig" %}
+
+    <h1>Liste des opérations</h1>
+
+    {% if bilan is empty %}
+        <p>Aucun bilan disponible.</p>
+    {% else %}
+        {% for type, messages in app.flashes %} 
+            {% for message in messages %}
+                <div class="alert alert-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %} 
+        {% endfor %}
+
+        <h2>Opérations en cours</h2>
+        <div class="container">
+            {% for item in bilan %} 
+                {% if 'EXPERT' in item.utilisateur.roles and item.operation.etat == 1 %}
+                    <div class="card">
+                        <div class="card-body expert">
+                            {% for role in item.utilisateur.roles %}
+                                <h3>{{ role }}</h3>
+                            {% endfor %}
+                            <h4>Opération n° {{ item.operation.id }}</h4>
+                            <p>Type:
+                                {% if item.operation.type == 1000 %}
+                                    Petite opération - Coût : 1 000 €
+                                {% elseif item.operation.type == 2500 %}
+                                    Moyenne opération - Coût : 2 500 €
+                                {% else %}
+                                    Grosse opération - Coût : 5 000 €
+                                {% endif %}
+                            </p>
+                            <p>État:
+                                <span class="{% if item.operation.etat == 1 %}orange-text{% else %}green-text{% endif %}">
+                                    {% if item.operation.etat == 1 %}
+                                        En cours
+                                    {% else %}
+                                        Terminée
+                                    {% endif %}
+                                </span>
+                            </p>
+                            <h4>Utilisateur n° {{ item.utilisateur.id }}</h4>
+                            <p>Nom: {{ item.utilisateur.nom }}</p>
+                            <p>Prénom: {{ item.utilisateur.prenom }}</p>
+                            <a href="{{ path('app_operation_show', { 'id': item.operation.id }) }}"><button>Consulter</button></a>
+                        </div>
+                    </div>
+                    <hr />
+                {% endif %}
+
+                {% if 'SENIOR' in item.utilisateur.roles and item.operation.etat == 1 %}
+                    <div class="card">
+                        <div class="card-body senior">
+                            {% for role in item.utilisateur.roles %}
+                                <h3>{{ role }}</h3>
+                            {% endfor %}
+                            <h4>Opération n° {{ item.operation.id }}</h4>
+                            <p>Type:
+                                {% if item.operation.type == 1000 %}
+                                    Petite opération - Coût : 1 000 €
+                                {% elseif item.operation.type == 2500 %}
+                                    Moyenne opération - Coût : 2 500 €
+                                {% else %}
+                                    Grosse opération - Coût : 5 000 €
+                                {% endif %}
+                            </p>
+                            <p>État:
+                                <span class="{% if item.operation.etat == 1 %}orange-text{% else %}green-text{% endif %}">
+                                    {% if item.operation.etat == 1 %}
+                                        En cours
+                                    {% else %}
+                                        Terminée
+                                    {% endif %}
+                                </span>
+                            </p>
+                            <h4>Utilisateur n° {{ item.utilisateur.id }}</h4>
+                            <p>Nom: {{ item.utilisateur.nom }}</p>
+                            <p>Prénom: {{ item.utilisateur.prenom }}</p>
+                            <a href="{{ path('app_operation_show', { 'id': item.operation.id }) }}"><button>Consulter</button></a>
+                        </div>
+                    </div>
+                    <hr />
+                {% endif %}
+                
+                {% if 'APPRENTI' in item.utilisateur.roles and item.operation.etat == 1 %}
+                    <div class="card">
+                        <div class="card-body apprenti">
+                            {% for role in item.utilisateur.roles %}
+                                <h3>{{ role }}</h3>
+                            {% endfor %}
+                            <h4>Opération n° {{ item.operation.id }}</h4>
+                            <p>Type:
+                                {% if item.operation.type == 1000 %}
+                                    Petite opération - Coût : 1 000 €
+                                {% elseif item.operation.type == 2500 %}
+                                    Moyenne opération - Coût : 2 500 €
+                                {% else %}
+                                    Grosse opération - Coût : 5 000 €
+                                {% endif %}
+                            </p>
+                            <p>État:
+                                <span class="{% if item.operation.etat == 1 %}orange-text{% else %}green-text{% endif %}">
+                                    {% if item.operation.etat == 1 %}
+                                        En cours
+                                    {% else %}
+                                        Terminée
+                                    {% endif %}
+                                </span>
+                            </p>
+                            <h4>Utilisateur n° {{ item.utilisateur.id }}</h4>
+                            <p>Nom: {{ item.utilisateur.nom }}</p>
+                            <p>Prénom: {{ item.utilisateur.prenom }}</p>
+                            <a href="{{ path('app_operation_show', { 'id': item.operation.id }) }}"><button>Consulter</button></a>
+                        </div>
+                    </div>
+                    <hr />
+                {% endif %}
+            {% endfor %} 
+        </div>
+        
+        <!-- Déplacez la deuxième div.container ici -->
+        <h2>Opérations terminées</h2>
+        <div class="container">
+            {% for item in bilan %} 
+                {% if 'EXPERT' in item.utilisateur.roles and item.operation.etat == 2 %}
+                    <div class="card">
+                        <div class="card-body expert">
+                            {% for role in item.utilisateur.roles %}
+                                <h3>{{ role }}</h3>
+                            {% endfor %}
+                            <h4>Opération n° {{ item.operation.id }}</h4>
+                            <p>Type:
+                                {% if item.operation.type == 1000 %}
+                                    Petite opération - Coût : 1 000 €
+                                {% elseif item.operation.type == 2500 %}
+                                    Moyenne opération - Coût : 2 500 €
+                                {% else %}
+                                    Grosse opération - Coût : 5 000 €
+                                {% endif %}
+                            </p>
+                            <p>État:
+                                <span class="{% if item.operation.etat == 1 %}orange-text{% else %}green-text{% endif %}">
+                                    {% if item.operation.etat == 1 %}
+                                        En cours
+                                    {% else %}
+                                        Terminée
+                                    {% endif %}
+                                </span>
+                            </p>
+                            <h4>Utilisateur n° {{ item.utilisateur.id }}</h4>
+                            <p>Nom: {{ item.utilisateur.nom }}</p>
+                            <p>Prénom: {{ item.utilisateur.prenom }}</p>
+                            <a href="{{ path('app_operation_show', { 'id': item.operation.id }) }}"><button>Consulter</button></a>
+                        </div>
+                    </div>
+                    <hr />
+                {% endif %}
+                {% if 'SENIOR' in item.utilisateur.roles and item.operation.etat == 2 %}
+                    <div class="card">
+                        <div class="card-body senior">
+                            {% for role in item.utilisateur.roles %}
+                                <h3>{{ role }}</h3>
+                            {% endfor %}
+                            <h4>Opération n° {{ item.operation.id }}</h4>
+                            <p>Type:
+                                {% if item.operation.type == 1000 %}
+                                    Petite opération - Coût : 1 000 €
+                                {% elseif item.operation.type == 2500 %}
+                                    Moyenne opération - Coût : 2 500 €
+                                {% else %}
+                                    Grosse opération - Coût : 5 000 €
+                                {% endif %}
+                            </p>
+                            <p>État:
+                                <span class="{% if item.operation.etat == 1 %}orange-text{% else %}green-text{% endif %}">
+                                    {% if item.operation.etat == 1 %}
+                                        En cours
+                                    {% else %}
+                                        Terminée
+                                    {% endif %}
+                                </span>
+                            </p>
+                            <h4>Utilisateur n° {{ item.utilisateur.id }}</h4>
+                            <p>Nom: {{ item.utilisateur.nom }}</p>
+                            <p>Prénom: {{ item.utilisateur.prenom }}</p>
+                            <a href="{{ path('app_operation_show', { 'id': item.operation.id }) }}"><button>Consulter</button></a>
+                        </div>
+                    </div>
+                    <hr />
+                {% endif %}
+                {% if 'APPRENTI' in item.utilisateur.roles and item.operation.etat == 2 %}
+                    <div class="card">
+                        <div class="card-body apprenti">
+                            {% for role in item.utilisateur.roles %}
+                                <h3>{{ role }}</h3>
+                            {% endfor %}
+                            <h4>Opération n° {{ item.operation.id }}</h4>
+                            <p>Type:
+                                {% if item.operation.type == 1000 %}
+                                    Petite opération - Coût : 1 000 €
+                                {% elseif item.operation.type == 2500 %}
+                                    Moyenne opération - Coût : 2 500 €
+                                {% else %}
+                                    Grosse opération - Coût : 5 000 €
+                                {% endif %}
+                            </p>
+                            <p>État:
+                                <span class="{% if item.operation.etat == 1 %}orange-text{% else %}green-text{% endif %}">
+                                    {% if item.operation.etat == 1 %}
+                                        En cours
+                                    {% else %}
+                                        Terminée
+                                    {% endif %}
+                                </span>
+                            </p>
+                            <h4>Utilisateur n° {{ item.utilisateur.id }}</h4>
+                            <p>Nom: {{ item.utilisateur.nom }}</p>
+                            <p>Prénom: {{ item.utilisateur.prenom }}</p>
+                            <a href="{{ path('app_operation_show', { 'id': item.operation.id }) }}"><button>Consulter</button></a>
+                        </div>
+                    </div>
+                    <hr />
+                {% endif %}
+            {% endfor %} 
+        </div>
+        <!-- Fin de la deuxième div.container -->
+    {% endif %}
+{% endblock %}

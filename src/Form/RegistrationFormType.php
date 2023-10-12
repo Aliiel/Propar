@@ -29,14 +29,15 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'E-mail'
                 ])
-        //     ->add('roles', ChoiceType::class, [
-        //         'choices' => [
-        //             'Apprenti' => 'Apprenti',
-        //             'Senior' => 'Sénior',
-        //             'Expert' => 'Expert'
-        //         ],
-        //         'placeholder' => 'Sélectionnez un rôle'
-        //    ])
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Apprenti' => 'APPRENTI',
+                    'Senior' => 'SENIOR',
+                    'Expert' => 'EXPERT'
+                ],
+                'label' => 'Sélectionnez un rôle',
+                'placeholder' => 'Rôles'
+           ])
             ->add('Accepter', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

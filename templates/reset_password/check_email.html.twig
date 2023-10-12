@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau votre mot de passe{% endblock %}
+
+{% block body %}
+
+{% include "header/_header.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/resetMailForm.css') }}">
+{% endblock %}
+
+    <h1>Envoyé !</h1>
+    <h2>Le mail de réinitialisation de votre mot de passe a bien été envoyé</h2>
+    <p>
+        Si un compte existe avec votre adresse e-mail, un e-mail vient de vous être envoyé avec un lien vous permettant de réinitialiser votre mot de passe.
+        Ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    </p>
+    <p>Si vous n'avez pas reçu cet e-mail, vérifiez dans vos courriers indésirables ou spams ou <u><a href="{{ path('app_forgot_password_request') }}">cliquez ici pour un nouvel envoi</a>.</p></u>
+{% endblock %}

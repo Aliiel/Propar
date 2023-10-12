@@ -3,20 +3,46 @@
 {% block title %}Création d'un nouvel utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Création d'un nouvel utilisateur</h1>
 
-    {{ form_errors(registrationForm) }}
+  {% include "header/_header.html.twig" %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.nom) }}
-        {{ form_row(registrationForm.prenom) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
-        }) }}
-        {# {{ form_row(form.roles) }} #}
-        {{ form_row(registrationForm.Accepter) }}
+  {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/ajoutUtilisateurForm.css') }}">
+  {% endblock %}
 
-        <button type="submit" class="btn">Enregistrer</button>
-    {{ form_end(registrationForm) }}
+  <div class="main">
+    <div class="element1">
+      <h1>Création d'un nouvel utilisateur</h1>
+        {# <img src="{{asset('image\nouvelutilisateur.jpg')}}"> #}
+    </div>
+<section>
+      {% for message in app.flashes('success') %}
+        <div class="flash-success">{{ message }}
+      {% endfor %}
+
+<div class="formulaire">
+    <div class="corpsForm">
+      {{ form_start(registrationForm) }}
+      {{ form_errors(registrationForm) }}
+
+      <div class="div">{{ form_row(registrationForm.nom, {'attr': {'class': 'select'}}) }}</div>
+      <div class="div">{{ form_row(registrationForm.prenom, {'attr': {'class': 'select'}}) }}</div>
+      <div class="div">{{ form_row(registrationForm.email, {'attr': {'class': 'select'}}) }}</div>
+      <div class="div">{{ form_row(registrationForm.plainPassword, {
+            'label': 'Mot de passe',
+            'attr': {'class': 'select'}
+      }) }}</div>
+      <div class="div">{{ form_row(registrationForm.roles, {'attr': {'class': 'select'}}) }}</div>
+      <div class="div">{{ form_row(registrationForm.Accepter, {'attr': {'class': 'select'}}) }}</div>
+
+     <div class="btn_submit">
+        <button type="submit" class="btn">Créer</button>
+     </div>
+        {{ form_end(registrationForm) }}
+     </div>
+     </div>
+</section>
+
+  </div>
+
 {% endblock %}

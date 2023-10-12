@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialiser votre mot de passe{% endblock %}
+
+{% block body %}
+
+{% include "header/_header.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/resetMailForm.css') }}">
+{% endblock %}
+
+
+    <h1>Réinitialiser votre mot de passe</h1>
+
+    {{ form_start(resetForm) }}
+        {{ form_row(resetForm.plainPassword) }}
+        <button class="btn btn-primary">Nouveau mot de passe</button>
+    {{ form_end(resetForm) }}
+{% endblock %}

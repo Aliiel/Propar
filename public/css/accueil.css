@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Poppins Light';
+    src: url(../font/Poppins-Light.ttf);
+}
+@font-face {
+    font-family: 'Poppins Medium';
+    src: url(../font/Poppins-Medium.ttf);
+}
+@font-face {
+    font-family: 'Poppins Regular';
+    src: url(../font/Poppins-Regular.ttf);
+}
+
+
+
+body{
+    background-image: url(../image/fond\ accueil.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+h1{
+    font-family: 'Poppins Medium';
+    border-radius: 0px 135px 135px 0px;
+    background: #011C27;
+    box-shadow:  0px 0px 10px #011821,
+             0px -0px 10px #01202d;
+    color: white;
+    padding: 10px;
+    width: 20%;
+    text-align: center;
+    margin-top: 3%;
+}
+
+h2{
+    font-family: 'Poppins Light';
+    background-color: #426950;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+h3{
+    background-color: #011C27;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+button{
+    background-color: #426950;
+    ;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    transition: ease-in-out 0.4s;
+    color: white;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #78B262;
+    
+}
+
+.card-body{
+    font-family: 'Poppins Light';
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 90%;   
+    border: 8px solid #426950;
+}
+.card-body.expert{
+
+    border: 8px solid #426950;
+}
+.card-body.senior{   
+    border: 8px solid #78B262;
+}
+.card-body.apprenti{
+    border: 8px solid #011C27;
+}
+
+.green-text {
+    color: green;
+}
+.orange-text {
+    color: rgb(250, 177, 5);
+}
+
+.card{
+    border-radius: 10px;
+    flex: 1;
+    margin: 10px;
+    width: 50%;
+  }
+.row{
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h2{
+    margin-top: 5%;
+    font-size: 2rem;
+}
+
+.container{
+    margin: auto 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h5{
+    background-color: #F8F4D7;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.btn.retour {
+    background-color: #f8f4d7;
+    color: black;
+    margin: 2%;
+  }
+  .btn.retour:hover {
+   color: black;
+   transform: scale(110%);
+    cursor: pointer;
+  }
+
